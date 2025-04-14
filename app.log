@@ -719,3 +719,99 @@
 2025-04-14 18:45:17,740 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
 2025-04-14 18:45:17,742 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
 2025-04-14 18:45:18,255 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:45:20,282 - INFO - Database initialized successfully
+2025-04-14 18:45:20,326 - WARNING -  * Debugger is active!
+2025-04-14 18:45:20,336 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:02:15,528 - INFO - Executing query: 
+        INSERT INTO Lunch_menu (Month, Day, Salad, Dal, Vegetable, Rice_Side, Dairy_Product, Chapati, Pickle_Lemon) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) 
+        ON DUPLICATE KEY UPDATE Month = VALUES(Month), Day = VALUES(Day), Salad = VALUES(Salad), Dal = VALUES(Dal), Vegetable = VALUES(Vegetable), Rice_Side = VALUES(Rice_Side), Dairy_Product = VALUES(Dairy_Product), Chapati = VALUES(Chapati), Pickle_Lemon = VALUES(Pickle_Lemon)
+         with values: ('May', 'Monday', 'carrot', 'massor', 'mushroom', 'rice', 'chass', 'chapati', 'aam ka aachar')
+2025-04-14 19:02:15,531 - INFO - 127.0.0.1 - - [14/Apr/2025 19:02:15] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 201 -
+2025-04-14 19:02:29,358 - INFO - Executing query: 
+        INSERT INTO Breakfast_menu (Month, Day, Breakfast_meal, Side_item, Eggs, Bread_butter_jam, Hot_Beverage, Chocos_Cornflake, Pickle_Lemon, Flavoured_powder, Fruit) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) 
+        ON DUPLICATE KEY UPDATE Month = VALUES(Month), Day = VALUES(Day), Breakfast_meal = VALUES(Breakfast_meal), Side_item = VALUES(Side_item), Eggs = VALUES(Eggs), Bread_butter_jam = VALUES(Bread_butter_jam), Hot_Beverage = VALUES(Hot_Beverage), Chocos_Cornflake = VALUES(Chocos_Cornflake), Pickle_Lemon = VALUES(Pickle_Lemon), Flavoured_powder = VALUES(Flavoured_powder), Fruit = VALUES(Fruit)
+         with values: ('May', 'Monday', 'dosa', 'coconut chutney', 'omelette', 'toast bread', 'tea', 'chocos', 'mango pickle', 'horlicks', 'banana')
+2025-04-14 19:02:29,423 - INFO - 127.0.0.1 - - [14/Apr/2025 19:02:29] "[35m[1mPUT /council/menu/update/breakfast HTTP/1.1[0m" 201 -
+2025-04-14 19:11:18,371 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:11:18,371 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:11:18,557 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:11:20,853 - INFO - Database initialized successfully
+2025-04-14 19:11:20,879 - WARNING -  * Debugger is active!
+2025-04-14 19:11:20,894 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:14:13,031 - INFO - 127.0.0.1 - - [14/Apr/2025 19:14:13] "POST /login HTTP/1.1" 200 -
+2025-04-14 19:14:35,489 - INFO - 127.0.0.1 - - [14/Apr/2025 19:14:35] "[31m[1mPOST /addUser HTTP/1.1[0m" 400 -
+2025-04-14 19:14:50,509 - ERROR - Database error: 1062 (23000): Duplicate entry 'Member2' for key 'members.unique_UserName'
+2025-04-14 19:14:50,512 - INFO - 127.0.0.1 - - [14/Apr/2025 19:14:50] "[35m[1mPOST /addUser HTTP/1.1[0m" 500 -
+2025-04-14 19:17:47,742 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:17:47,743 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:17:48,221 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:17:50,364 - INFO - Database initialized successfully
+2025-04-14 19:17:50,405 - WARNING -  * Debugger is active!
+2025-04-14 19:17:50,412 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:20:39,760 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:20:39,766 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:20:39,958 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:20:42,095 - INFO - Database initialized successfully
+2025-04-14 19:20:42,133 - WARNING -  * Debugger is active!
+2025-04-14 19:20:42,133 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:20:42,490 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:20:42,493 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:20:43,318 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:20:45,270 - INFO - Database initialized successfully
+2025-04-14 19:20:45,303 - WARNING -  * Debugger is active!
+2025-04-14 19:20:45,313 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:21:00,645 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:21:00,647 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:21:01,654 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:21:03,612 - INFO - Database initialized successfully
+2025-04-14 19:21:03,652 - WARNING -  * Debugger is active!
+2025-04-14 19:21:03,653 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:21:06,203 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:21:06,205 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:21:06,832 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:32:49,362 - INFO - Database initialized successfully
+2025-04-14 19:32:49,438 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 19:32:49,440 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 19:32:49,462 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:32:51,321 - INFO - Database initialized successfully
+2025-04-14 19:32:51,355 - WARNING -  * Debugger is active!
+2025-04-14 19:32:51,355 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:32:58,953 - INFO - 127.0.0.1 - - [14/Apr/2025 19:32:58] "POST /login HTTP/1.1" 200 -
+2025-04-14 19:33:18,546 - INFO - 127.0.0.1 - - [14/Apr/2025 19:33:18] "[33mDELETE /deleteUser HTTP/1.1[0m" 404 -
+2025-04-14 19:34:04,204 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:34:04,207 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:34:05,064 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:34:07,070 - INFO - Database initialized successfully
+2025-04-14 19:34:07,106 - WARNING -  * Debugger is active!
+2025-04-14 19:34:07,109 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:34:09,475 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:34:09,476 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:34:10,337 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:34:12,304 - INFO - Database initialized successfully
+2025-04-14 19:34:12,342 - WARNING -  * Debugger is active!
+2025-04-14 19:34:12,355 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:34:37,615 - ERROR - Error processing request: 400 Bad Request: Failed to decode JSON object: Expecting value: line 1 column 1 (char 0)
+2025-04-14 19:34:37,615 - INFO - 127.0.0.1 - - [14/Apr/2025 19:34:37] "[35m[1mDELETE /deleteUser HTTP/1.1[0m" 500 -
+2025-04-14 19:35:54,936 - INFO - 127.0.0.1 - - [14/Apr/2025 19:35:54] "[31m[1mDELETE /deleteUser HTTP/1.1[0m" 400 -
+2025-04-14 19:36:12,169 - INFO - 127.0.0.1 - - [14/Apr/2025 19:36:12] "[33mDELETE /deleteUser HTTP/1.1[0m" 404 -
+2025-04-14 19:36:19,952 - INFO - 127.0.0.1 - - [14/Apr/2025 19:36:19] "DELETE /deleteUser HTTP/1.1" 200 -
+2025-04-14 19:37:51,370 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:37:51,372 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:37:51,374 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:37:52,288 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:37:54,453 - INFO - Database initialized successfully
+2025-04-14 19:37:54,490 - WARNING -  * Debugger is active!
+2025-04-14 19:37:54,498 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 19:37:56,036 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:37:56,038 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 19:37:56,680 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 19:37:58,759 - INFO - Database initialized successfully
+2025-04-14 19:37:58,804 - WARNING -  * Debugger is active!
+2025-04-14 19:37:58,815 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 20:48:43,508 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 20:48:43,509 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 20:48:43,509 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 20:48:44,153 - INFO -  * Restarting with watchdog (windowsapi)

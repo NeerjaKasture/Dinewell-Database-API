@@ -198,12 +198,59 @@ def login():
             conn.close()
 
 
+
+@app.route('/users', methods=['GET'])
+@token_required()
+def get_users():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("""
+            SELECT m.ID, m.UserName, m.emailID, m.DoB, l.Role
+            FROM members m
+            JOIN Login l ON m.ID = l.MemberID
+        """)
+        users = cursor.fetchall()
+        return jsonify(users), 200
+    except Exception as e:
+        logging.error(f"Error fetching users: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    response = jsonify({"message": "Successfully logged out"})
+    response.set_cookie('session_token', '', expires=0)
+    return response
+
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return "pong", 200
+
+
+# =========== Admin APIs ===========
+
 @app.route('/addUser', methods=['POST'])
 @token_required(required_role='Admin')
 def add_user():
     try:
         if not request.is_json:
             return jsonify({"error": "Request must be JSON"}), 400
+        
+        session_token = request.cookies.get("session_token")
+        payload = jwt.decode(
+            session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        member_id = payload['user_id']
+
+        if not is_valid_session() or not is_member_of_group(member_id):
+            logging.warning(f"Unauthorized add user attempt by member {member_id}")
+            return jsonify({"error": "Unauthorized"}), 401
 
         data = request.get_json()
         required_fields = ['username', 'password', 'role', 'email', 'DoB']
@@ -255,22 +302,57 @@ def add_user():
         if 'conn' in locals():
             conn.close()
 
-
-@app.route('/users', methods=['GET'])
-@token_required()
-def get_users():
+@app.route('/deleteUser', methods=['DELETE'])
+@token_required(required_role='Admin')
+def delete_user():
     try:
+        if not request.is_json:
+            return jsonify({"error": "Request must be JSON"}), 400
+
+        data = request.get_json()
+        if 'email' not in data:
+            return jsonify({"error": "Missing 'email' field"}), 400
+
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("""
-            SELECT m.ID, m.UserName, m.emailID, m.DoB, l.Role
-            FROM members m
-            JOIN Login l ON m.ID = l.MemberID
-        """)
-        users = cursor.fetchall()
-        return jsonify(users), 200
+        cursor = conn.cursor()
+
+        # Get member ID
+        cursor.execute("SELECT ID FROM members WHERE emailID = %s", (data['email'],))
+        result = cursor.fetchone()
+        if not result:
+            return jsonify({"error": "User not found"}), 404
+
+        member_id = result[0]
+
+        # Get all groups the user belongs to
+        cursor.execute("SELECT GroupID FROM MemberGroupMapping WHERE MemberID = %s", (member_id,))
+        groups = [row[0] for row in cursor.fetchall()]
+
+        if 14 not in groups:
+            return jsonify({"error": "User is not in group 14"}), 400
+
+        if len(groups) == 1 and groups[0] == 14:
+            # Only in group 14 — delete from all 3 tables
+            cursor.execute("DELETE FROM Login WHERE MemberID = %s", (member_id,))
+            cursor.execute("DELETE FROM MemberGroupMapping WHERE MemberID = %s", (member_id,))
+            cursor.execute("DELETE FROM members WHERE ID = %s", (member_id,))
+            conn.commit()
+            return jsonify({"message": "User was only in group 14 and has been fully deleted."}), 200
+        else:
+            # In multiple groups — remove only group 14
+            cursor.execute("""
+                DELETE FROM MemberGroupMapping
+                WHERE MemberID = %s AND GroupID = 14
+            """, (member_id,))
+            conn.commit()
+            return jsonify({"message": "User removed from group 14, but retained in other groups."}), 200
+
+    except mysql.connector.Error as e:
+        conn.rollback()
+        logging.error(f"Database error: {str(e)}")
+        return jsonify({"error": "Database error occurred"}), 500
     except Exception as e:
-        logging.error(f"Error fetching users: {str(e)}")
+        logging.error(f"Error processing request: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
     finally:
         if 'cursor' in locals():
@@ -278,20 +360,6 @@ def get_users():
         if 'conn' in locals():
             conn.close()
 
-
-@app.route('/logout', methods=['POST'])
-def logout():
-    response = jsonify({"message": "Successfully logged out"})
-    response.set_cookie('session_token', '', expires=0)
-    return response
-
-
-@app.route('/ping', methods=['GET'])
-def ping():
-    return "pong", 200
-
-
-# =========== Admin APIs ===========
 
 # 1. Removing expired inventory items
 @app.route('/admin/inventory/remove_expired', methods=['DELETE'])
