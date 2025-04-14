@@ -1,0 +1,10 @@
+curl -X POST http://localhost:5000/addUser -H "Content-Type: application/json" -H "Cookie: session_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTc2LCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3NDQ2OTg1Njl9.dbW7EQCmLa8berXF1jWhzwq8ftTURHrrWWa6S3G-Fk8"  -d "{\"username\":\"Member2\",\"password\":\"password123\",\"role\":\"Council\",\"email\":\"member2@example.com\",\"DoB\":\"2000-01-01\"}"
+
+curl -X GET http://localhost:5000/users -H "Cookie: session_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDE0LCJyb2xlIjoiQ291bmNpbCIsImV4cCI6MTc0NDYzMDc0MH0.ItR3vDhNSALpTNPWtxmKFtRwsOrtZ2NpBXXbC6Egw2A"
+
+curl -X POST http://localhost:5000/login -H "Content-Type: application/json" -d "{\"email\":\"admin@dinewell.com\",\"password\":\"Admin@123\"}" -s -i  
+
+curl -X PUT http://localhost:5000/council/menu/update/lunch -H "Cookie: session_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDYwLCJyb2xlIjoiQ291bmNpbCIsImV4cCI6MTc0NDY5ODY0N30.C1kRU26q45CwTDmsickzVfVRol2tfNLUvXre-PIl92s" -H "Content-Type: application/json" -d '{"Month":"May","Day": "Monday", "Salad": "carrot", "Dal": "massor","Vegetable":"mushroom","Rice_Side":"rice","Dairy_Product":"chass","Chapati":"chapati","Pickle_Lemon":"lemon"}'
+
+curl -X PUT "http://localhost:5000/council/menu/update/lunch" -H "Cookie: session_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMDYwLCJyb2xlIjoiQ291bmNpbCIsImV4cCI6MTc0NDY5ODY0N30.C1kRU26q45CwTDmsickzVfVRol2tfNLUvXre-PIl92s" -H "Content-Type: application/json" -d "{\"Month\": \"May\", \"Day\": \"Monday\", \"Salad\": \"carrot\", \"Dal\": \"massor\", \"Vegetable\": \"mushroom\", \"Rice_Side\": \"rice\", \"Dairy_Product\": \"chass\", \"Chapati\": \"chapati\", \"Pickle_Lemon\": \"lemon\"}"
+

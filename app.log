@@ -1,0 +1,721 @@
+2025-04-14 15:08:03,073 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:08:03,172 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 15:08:03,172 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 15:08:03,200 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:08:04,063 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:08:04,110 - WARNING -  * Debugger is active!
+2025-04-14 15:08:04,110 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:08:21,739 - INFO - 127.0.0.1 - - [14/Apr/2025 15:08:21] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2025-04-14 15:08:40,430 - INFO - 127.0.0.1 - - [14/Apr/2025 15:08:40] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2025-04-14 15:09:14,929 - INFO - 127.0.0.1 - - [14/Apr/2025 15:09:14] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2025-04-14 15:09:19,607 - INFO - 127.0.0.1 - - [14/Apr/2025 15:09:19] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2025-04-14 15:09:49,076 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:09:49,076 - INFO - 127.0.0.1 - - [14/Apr/2025 15:09:49] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:10:36,272 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:10:36,274 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:10:36,448 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:10:37,604 - INFO - Database initialized successfully
+2025-04-14 15:10:37,636 - WARNING -  * Debugger is active!
+2025-04-14 15:10:37,640 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:11:40,670 - INFO - 127.0.0.1 - - [14/Apr/2025 15:11:40] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-14 15:11:47,355 - INFO - 127.0.0.1 - - [14/Apr/2025 15:11:47] "[33mGET / HTTP/1.1[0m" 404 -
+2025-04-14 15:11:56,789 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:11:56,789 - INFO - 127.0.0.1 - - [14/Apr/2025 15:11:56] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:12:44,827 - INFO - Database initialized successfully
+2025-04-14 15:12:44,886 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 15:12:44,886 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 15:12:44,905 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:12:46,037 - INFO - Database initialized successfully
+2025-04-14 15:12:46,069 - WARNING -  * Debugger is active!
+2025-04-14 15:12:46,081 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:12:48,011 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:12:48,012 - INFO - 127.0.0.1 - - [14/Apr/2025 15:12:48] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:14:10,215 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:14:10,215 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:14:10,851 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:14:11,821 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:14:11,852 - WARNING -  * Debugger is active!
+2025-04-14 15:14:11,866 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:14:15,141 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:14:15,141 - INFO - 127.0.0.1 - - [14/Apr/2025 15:14:15] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:14:17,208 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:14:17,208 - INFO - 127.0.0.1 - - [14/Apr/2025 15:14:17] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:14:23,518 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:14:23,599 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 15:14:23,599 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 15:14:23,626 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:14:24,667 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:14:24,698 - WARNING -  * Debugger is active!
+2025-04-14 15:14:24,711 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:14:26,524 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:14:26,524 - INFO - 127.0.0.1 - - [14/Apr/2025 15:14:26] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:15:31,230 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2025-04-14 15:15:31,230 - INFO - 127.0.0.1 - - [14/Apr/2025 15:15:31] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:15:59,020 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 2 column 3 (char 4)
+2025-04-14 15:15:59,020 - INFO - 127.0.0.1 - - [14/Apr/2025 15:15:59] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:17:02,401 - ERROR - Login error: 400 Bad Request: Failed to decode JSON object: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+2025-04-14 15:17:02,401 - INFO - 127.0.0.1 - - [14/Apr/2025 15:17:02] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 15:17:26,492 - INFO - 127.0.0.1 - - [14/Apr/2025 15:17:26] "POST /login HTTP/1.1" 200 -
+2025-04-14 15:19:48,020 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:19:48,025 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:19:48,550 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:21:00,527 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:21:00,578 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 15:21:00,578 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 15:21:00,606 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:21:01,805 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:21:01,843 - WARNING -  * Debugger is active!
+2025-04-14 15:21:01,852 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:21:06,212 - INFO - 127.0.0.1 - - [14/Apr/2025 15:21:06] "[31m[1mPOST /addUser HTTP/1.1[0m" 400 -
+2025-04-14 15:21:55,968 - INFO - 127.0.0.1 - - [14/Apr/2025 15:21:55] "POST /login HTTP/1.1" 200 -
+2025-04-14 15:24:11,113 - INFO - 127.0.0.1 - - [14/Apr/2025 15:24:11] "[31m[1mPOST /addUser HTTP/1.1[0m" 400 -
+2025-04-14 15:26:09,505 - INFO - 127.0.0.1 - - [14/Apr/2025 15:26:09] "[31m[1mPOST /addUser HTTP/1.1[0m" 400 -
+2025-04-14 15:26:58,954 - ERROR - Database error: 1406 (22001): Data too long for column 'Role' at row 1
+2025-04-14 15:26:58,957 - INFO - 127.0.0.1 - - [14/Apr/2025 15:26:58] "[35m[1mPOST /addUser HTTP/1.1[0m" 500 -
+2025-04-14 15:49:42,944 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:49:42,951 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:49:43,710 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:49:45,869 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:49:45,902 - WARNING -  * Debugger is active!
+2025-04-14 15:49:45,910 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:50:16,065 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:50:16,069 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:50:16,329 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:50:18,304 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:50:18,338 - WARNING -  * Debugger is active!
+2025-04-14 15:50:18,349 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:51:20,897 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:51:20,899 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:51:21,094 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:51:23,259 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:51:23,296 - WARNING -  * Debugger is active!
+2025-04-14 15:51:23,308 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:51:25,833 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:51:25,836 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:51:26,466 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:51:28,477 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:51:28,508 - WARNING -  * Debugger is active!
+2025-04-14 15:51:28,512 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:53:55,841 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:53:55,841 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:53:56,816 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:53:59,171 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:53:59,212 - WARNING -  * Debugger is active!
+2025-04-14 15:53:59,222 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:54:08,628 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:54:08,630 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:54:09,441 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:54:11,488 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:54:11,521 - WARNING -  * Debugger is active!
+2025-04-14 15:54:11,534 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:54:19,824 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:54:19,825 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 15:54:20,749 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:54:22,683 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:54:22,719 - WARNING -  * Debugger is active!
+2025-04-14 15:54:22,719 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:54:37,980 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:54:38,048 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 15:54:38,048 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 15:54:38,070 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 15:54:40,135 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 15:54:40,171 - WARNING -  * Debugger is active!
+2025-04-14 15:54:40,179 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 15:55:03,462 - INFO - 127.0.0.1 - - [14/Apr/2025 15:55:03] "[31m[1mPOST /dbcon HTTP/1.1[0m" 405 -
+2025-04-14 15:55:26,946 - INFO - 127.0.0.1 - - [14/Apr/2025 15:55:26] "GET /dbcon HTTP/1.1" 200 -
+2025-04-14 15:56:36,368 - INFO - 127.0.0.1 - - [14/Apr/2025 15:56:36] "POST /login HTTP/1.1" 200 -
+2025-04-14 15:57:16,405 - ERROR - Database error: 1406 (22001): Data too long for column 'Role' at row 1
+2025-04-14 15:57:16,405 - INFO - 127.0.0.1 - - [14/Apr/2025 15:57:16] "[35m[1mPOST /addUser HTTP/1.1[0m" 500 -
+2025-04-14 15:57:39,286 - ERROR - Database error: 1406 (22001): Data too long for column 'Role' at row 1
+2025-04-14 15:57:39,288 - INFO - 127.0.0.1 - - [14/Apr/2025 15:57:39] "[35m[1mPOST /addUser HTTP/1.1[0m" 500 -
+2025-04-14 15:58:13,477 - INFO - 127.0.0.1 - - [14/Apr/2025 15:58:13] "[35m[1mPOST /addUser HTTP/1.1[0m" 201 -
+2025-04-14 15:59:18,029 - INFO - 127.0.0.1 - - [14/Apr/2025 15:59:18] "[31m[1mGET /users HTTP/1.1[0m" 401 -
+2025-04-14 15:59:38,778 - INFO - 127.0.0.1 - - [14/Apr/2025 15:59:38] "GET /users HTTP/1.1" 200 -
+2025-04-14 16:00:27,037 - INFO - 127.0.0.1 - - [14/Apr/2025 16:00:27] "POST /logout HTTP/1.1" 200 -
+2025-04-14 16:01:06,752 - INFO - 127.0.0.1 - - [14/Apr/2025 16:01:06] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:08:08,172 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:08:08,173 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:08:08,173 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:08:08,758 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:08:10,860 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:08:10,903 - WARNING -  * Debugger is active!
+2025-04-14 16:08:10,911 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:08:12,222 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:08:12,224 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:08:13,079 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:08:15,630 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:08:15,662 - WARNING -  * Debugger is active!
+2025-04-14 16:08:15,671 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:09:00,904 - INFO - 127.0.0.1 - - [14/Apr/2025 16:09:00] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:09:31,916 - INFO - 127.0.0.1 - - [14/Apr/2025 16:09:31] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:10:57,371 - INFO - 127.0.0.1 - - [14/Apr/2025 16:10:57] "GET /users HTTP/1.1" 200 -
+2025-04-14 16:11:30,872 - INFO - 127.0.0.1 - - [14/Apr/2025 16:11:30] "[31m[1mGET /council/menu/update/lunch HTTP/1.1[0m" 405 -
+2025-04-14 16:11:47,327 - WARNING - Centralized session validation failed
+2025-04-14 16:11:47,327 - WARNING - Unauthorized menu update attempt by member 2014
+2025-04-14 16:11:47,327 - INFO - 127.0.0.1 - - [14/Apr/2025 16:11:47] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:12:15,377 - INFO - 127.0.0.1 - - [14/Apr/2025 16:12:15] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:12:42,381 - INFO - 127.0.0.1 - - [14/Apr/2025 16:12:42] "GET /users HTTP/1.1" 200 -
+2025-04-14 16:13:03,508 - INFO - 127.0.0.1 - - [14/Apr/2025 16:13:03] "[33mPUT /council HTTP/1.1[0m" 404 -
+2025-04-14 16:13:24,850 - INFO - 127.0.0.1 - - [14/Apr/2025 16:13:24] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:13:58,069 - INFO - 127.0.0.1 - - [14/Apr/2025 16:13:58] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:14:08,223 - INFO - 127.0.0.1 - - [14/Apr/2025 16:14:08] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:14:22,270 - WARNING - Centralized session validation failed
+2025-04-14 16:14:22,270 - WARNING - Unauthorized menu update attempt by member 2014
+2025-04-14 16:14:22,271 - INFO - 127.0.0.1 - - [14/Apr/2025 16:14:22] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:15:34,494 - INFO - 127.0.0.1 - - [14/Apr/2025 16:15:34] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:15:50,159 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:15:50,160 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:15:50,386 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:15:52,516 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:15:52,542 - WARNING -  * Debugger is active!
+2025-04-14 16:15:52,559 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:15:57,355 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:15:57,356 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:15:57,789 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:15:59,693 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:15:59,726 - WARNING -  * Debugger is active!
+2025-04-14 16:15:59,736 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:18:05,222 - INFO - 127.0.0.1 - - [14/Apr/2025 16:18:05] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:21:04,607 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:21:04,609 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:21:05,401 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:21:07,423 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:21:07,459 - WARNING -  * Debugger is active!
+2025-04-14 16:21:07,468 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:22:44,743 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:22:44,743 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:22:44,745 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:22:45,378 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:24:05,575 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:24:05,632 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:24:05,632 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:24:05,654 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:24:07,591 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:24:07,633 - WARNING -  * Debugger is active!
+2025-04-14 16:24:07,640 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:24:15,985 - ERROR - Login error: Object of type datetime is not JSON serializable
+2025-04-14 16:24:15,987 - INFO - 127.0.0.1 - - [14/Apr/2025 16:24:15] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 16:26:33,354 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:26:33,355 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:26:33,998 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:26:35,949 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:26:35,983 - WARNING -  * Debugger is active!
+2025-04-14 16:26:35,996 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:26:44,658 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:26:44,720 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:26:44,720 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:26:44,743 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:26:46,493 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:26:46,524 - WARNING -  * Debugger is active!
+2025-04-14 16:26:46,530 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:26:48,184 - INFO - 127.0.0.1 - - [14/Apr/2025 16:26:48] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:28:04,164 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:28:04,165 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:28:04,271 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:28:06,385 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:28:06,418 - WARNING -  * Debugger is active!
+2025-04-14 16:28:06,424 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:28:09,827 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:28:09,828 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:28:10,636 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:28:12,681 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:28:12,720 - WARNING -  * Debugger is active!
+2025-04-14 16:28:12,727 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:30:51,845 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:30:51,846 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:30:52,240 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:31:23,499 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:31:23,554 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:31:23,554 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:31:23,572 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:31:25,348 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:31:25,390 - WARNING -  * Debugger is active!
+2025-04-14 16:31:25,395 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:31:27,981 - ERROR - Login error: 1265 (01000): Data truncated for column 'Expiry' at row 123
+2025-04-14 16:31:27,981 - INFO - 127.0.0.1 - - [14/Apr/2025 16:31:27] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-14 16:33:05,580 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:33:05,580 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:33:06,362 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:33:09,329 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:33:09,367 - WARNING -  * Debugger is active!
+2025-04-14 16:33:09,375 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:33:09,691 - INFO - 127.0.0.1 - - [14/Apr/2025 16:33:09] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:33:34,553 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:33:34,618 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:33:34,621 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:33:34,642 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:33:36,480 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:33:36,510 - WARNING -  * Debugger is active!
+2025-04-14 16:33:36,516 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:35:04,636 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:04,636 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:04,636 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:05,406 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:35:07,409 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:35:07,457 - WARNING -  * Debugger is active!
+2025-04-14 16:35:07,469 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:35:08,803 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:08,805 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:09,610 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:35:11,475 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:35:11,507 - WARNING -  * Debugger is active!
+2025-04-14 16:35:11,515 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:35:13,151 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:13,154 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:13,670 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:35:15,499 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:35:15,534 - WARNING -  * Debugger is active!
+2025-04-14 16:35:15,544 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:35:27,358 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:27,358 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:35:27,842 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:36:08,071 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:36:08,140 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:36:08,140 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:36:08,162 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:36:09,938 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:36:09,979 - WARNING -  * Debugger is active!
+2025-04-14 16:36:09,987 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:36:18,896 - INFO - 127.0.0.1 - - [14/Apr/2025 16:36:18] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:37:34,996 - INFO - 127.0.0.1 - - [14/Apr/2025 16:37:34] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:38:32,982 - INFO - 127.0.0.1 - - [14/Apr/2025 16:38:32] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:42:51,826 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:42:51,826 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:42:52,400 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:42:54,609 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:42:54,646 - WARNING -  * Debugger is active!
+2025-04-14 16:42:54,653 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:44:53,218 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:44:53,283 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:44:53,283 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:44:53,304 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:44:55,270 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:44:55,316 - WARNING -  * Debugger is active!
+2025-04-14 16:44:55,324 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:44:58,677 - INFO - 127.0.0.1 - - [14/Apr/2025 16:44:58] "POST /login HTTP/1.1" 200 -
+2025-04-14 16:45:25,788 - WARNING - Centralized session validation failed
+2025-04-14 16:45:25,788 - WARNING - Unauthorized menu update attempt by member 2014
+2025-04-14 16:45:25,788 - INFO - 127.0.0.1 - - [14/Apr/2025 16:45:25] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:50:04,500 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:50:04,503 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:50:05,173 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:50:38,548 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:50:38,621 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:50:38,621 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:50:38,645 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:50:40,419 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:50:40,457 - WARNING -  * Debugger is active!
+2025-04-14 16:50:40,463 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:50:44,001 - WARNING - Centralized session validation failed
+2025-04-14 16:50:44,001 - WARNING - Invalid session token for member 2014
+2025-04-14 16:50:44,001 - INFO - 127.0.0.1 - - [14/Apr/2025 16:50:44] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:50:57,845 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:50:57,845 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:50:58,804 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:51:01,172 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:51:01,212 - WARNING -  * Debugger is active!
+2025-04-14 16:51:01,215 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:51:01,533 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:51:01,533 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:51:02,360 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:51:09,274 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:51:09,306 - WARNING -  * Debugger is active!
+2025-04-14 16:51:09,318 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:51:09,385 - WARNING - Centralized session validation failed
+2025-04-14 16:51:09,385 - WARNING - Invalid session token for member 2014
+2025-04-14 16:51:09,387 - INFO - 127.0.0.1 - - [14/Apr/2025 16:51:09] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:53:04,561 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:53:04,563 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:53:05,512 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:53:08,728 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:53:08,771 - WARNING -  * Debugger is active!
+2025-04-14 16:53:08,777 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:53:11,747 - INFO - Centralized session validation response: 404 - <!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+2025-04-14 16:53:11,747 - WARNING - Centralized session validation failed
+2025-04-14 16:53:11,747 - WARNING - Invalid session token for member 2014
+2025-04-14 16:53:11,749 - INFO - 127.0.0.1 - - [14/Apr/2025 16:53:11] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 16:54:29,571 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:54:29,572 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:54:30,510 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:54:32,368 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:54:32,390 - WARNING -  * Debugger is active!
+2025-04-14 16:54:32,407 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:54:40,532 - INFO - 127.0.0.1 - - [14/Apr/2025 16:54:40] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 415 -
+2025-04-14 16:55:43,464 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:55:43,481 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 16:55:44,156 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:55:50,392 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:55:50,430 - WARNING -  * Debugger is active!
+2025-04-14 16:55:50,436 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 16:58:25,480 - ERROR - Database initialization failed: 2003 (HY000): Can't connect to MySQL server on '10.0.116.125:3306' (10060)
+2025-04-14 16:58:25,532 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 16:58:25,533 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 16:58:25,555 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 16:58:27,450 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 16:58:27,492 - WARNING -  * Debugger is active!
+2025-04-14 16:58:27,503 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:00:00,362 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:00:00,362 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:00:01,404 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:00:03,442 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:00:03,484 - WARNING -  * Debugger is active!
+2025-04-14 17:00:03,490 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:00:15,120 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:00:15,176 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:00:15,176 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:00:15,203 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:00:17,151 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:00:17,181 - WARNING -  * Debugger is active!
+2025-04-14 17:00:17,191 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:02:28,128 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:02:28,128 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:02:28,559 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:02:30,672 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:02:30,710 - WARNING -  * Debugger is active!
+2025-04-14 17:02:30,720 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:02:39,103 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:02:39,105 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:02:39,959 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:04:58,265 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:04:58,311 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:04:58,311 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:04:58,331 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:05:00,225 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:05:00,258 - WARNING -  * Debugger is active!
+2025-04-14 17:05:00,261 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:32,821 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:32,822 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:33,082 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:06:35,239 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:06:35,272 - WARNING -  * Debugger is active!
+2025-04-14 17:06:35,272 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:43,182 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:43,182 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:43,476 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:06:45,459 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:06:45,505 - WARNING -  * Debugger is active!
+2025-04-14 17:06:45,514 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:45,834 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:45,838 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:46,644 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:06:48,712 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:06:48,752 - WARNING -  * Debugger is active!
+2025-04-14 17:06:48,758 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:52,220 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:52,221 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:52,903 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:06:55,077 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:06:55,116 - WARNING -  * Debugger is active!
+2025-04-14 17:06:55,124 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:55,448 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:55,449 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:56,275 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:06:58,089 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:06:58,119 - WARNING -  * Debugger is active!
+2025-04-14 17:06:58,129 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:06:59,799 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:06:59,800 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:07:00,262 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:07:02,266 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:07:02,313 - WARNING -  * Debugger is active!
+2025-04-14 17:07:02,313 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:07:12,572 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:07:12,626 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:07:12,626 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:07:12,657 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:07:14,391 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:07:14,431 - WARNING -  * Debugger is active!
+2025-04-14 17:07:14,442 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:09:18,758 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:09:18,760 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:09:19,582 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:09:21,539 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:09:21,575 - WARNING -  * Debugger is active!
+2025-04-14 17:09:21,581 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:09:29,425 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:09:29,478 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:09:29,478 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:09:29,500 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:09:31,296 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'members'
+2025-04-14 17:09:31,324 - WARNING -  * Debugger is active!
+2025-04-14 17:09:31,324 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:10:47,434 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:10:47,436 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:10:48,064 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:10:50,005 - ERROR - Database initialization failed: 1142 (42000): CREATE command denied to user 'cs432g14'@'10.7.20.132' for table 'Login'
+2025-04-14 17:10:50,037 - WARNING -  * Debugger is active!
+2025-04-14 17:10:50,046 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:10:52,954 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:10:52,954 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:10:53,318 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:10:55,321 - INFO - Database initialized successfully
+2025-04-14 17:10:55,356 - WARNING -  * Debugger is active!
+2025-04-14 17:10:55,363 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:11:07,126 - INFO - Database initialized successfully
+2025-04-14 17:11:07,191 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:11:07,191 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:11:07,212 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:11:08,916 - INFO - Database initialized successfully
+2025-04-14 17:11:08,949 - WARNING -  * Debugger is active!
+2025-04-14 17:11:08,972 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:14:07,973 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:07,976 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:08,702 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:14:10,882 - INFO - Database initialized successfully
+2025-04-14 17:14:10,919 - WARNING -  * Debugger is active!
+2025-04-14 17:14:10,924 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:14:12,413 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:12,415 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:13,072 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:14:14,945 - INFO - Database initialized successfully
+2025-04-14 17:14:14,981 - WARNING -  * Debugger is active!
+2025-04-14 17:14:14,987 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:14:37,660 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:37,661 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:14:38,296 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:14:40,194 - INFO - Database initialized successfully
+2025-04-14 17:14:40,243 - WARNING -  * Debugger is active!
+2025-04-14 17:14:40,252 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:14:50,561 - INFO - Database initialized successfully
+2025-04-14 17:14:50,644 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.7.20.132:5000
+2025-04-14 17:14:50,644 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:14:50,666 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:14:52,837 - INFO - Database initialized successfully
+2025-04-14 17:14:52,877 - WARNING -  * Debugger is active!
+2025-04-14 17:14:52,885 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:15:50,708 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:15:50,709 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:15:51,499 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:15:53,917 - INFO - Database initialized successfully
+2025-04-14 17:15:53,956 - WARNING -  * Debugger is active!
+2025-04-14 17:15:53,965 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:15:54,808 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:15:54,810 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:15:55,113 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:15:56,956 - INFO - Database initialized successfully
+2025-04-14 17:15:56,988 - WARNING -  * Debugger is active!
+2025-04-14 17:15:56,997 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:16:20,711 - INFO - 127.0.0.1 - - [14/Apr/2025 17:16:20] "[31m[1mGET /users HTTP/1.1[0m" 401 -
+2025-04-14 17:16:57,344 - INFO - 127.0.0.1 - - [14/Apr/2025 17:16:57] "[31m[1mGET /isValidSession HTTP/1.1[0m" 400 -
+2025-04-14 17:17:11,144 - INFO - 127.0.0.1 - - [14/Apr/2025 17:17:11] "POST /login HTTP/1.1" 200 -
+2025-04-14 17:17:58,886 - INFO - 127.0.0.1 - - [14/Apr/2025 17:17:58] "[31m[1mGET /isValidSession HTTP/1.1[0m" 400 -
+2025-04-14 17:18:43,883 - INFO - 127.0.0.1 - - [14/Apr/2025 17:18:43] "[31m[1mGET /users HTTP/1.1[0m" 401 -
+2025-04-14 17:20:48,479 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:20:48,479 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:20:48,481 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:20:49,427 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:20:51,439 - INFO - Database initialized successfully
+2025-04-14 17:20:51,479 - WARNING -  * Debugger is active!
+2025-04-14 17:20:51,486 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:20:57,678 - INFO - 127.0.0.1 - - [14/Apr/2025 17:20:57] "GET /isValidSession HTTP/1.1" 200 -
+2025-04-14 17:21:32,163 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:21:32,163 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:21:32,961 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:21:34,824 - INFO - Database initialized successfully
+2025-04-14 17:21:34,858 - WARNING -  * Debugger is active!
+2025-04-14 17:21:34,868 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:22:56,829 - INFO - 127.0.0.1 - - [14/Apr/2025 17:22:56] "POST /login HTTP/1.1" 200 -
+2025-04-14 17:23:20,308 - INFO - Centralized session validation response: 404 - <!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+
+2025-04-14 17:23:20,308 - WARNING - Centralized session validation failed
+2025-04-14 17:23:20,308 - WARNING - Invalid session token for member 2014
+2025-04-14 17:23:20,309 - INFO - 127.0.0.1 - - [14/Apr/2025 17:23:20] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 17:23:31,987 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:23:31,987 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:23:32,926 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:23:35,056 - INFO - Database initialized successfully
+2025-04-14 17:23:35,090 - WARNING -  * Debugger is active!
+2025-04-14 17:23:35,100 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:23:37,971 - INFO -  * Detected change in 'C:\\Users\\npkas\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\app.py', reloading
+2025-04-14 17:23:37,999 - INFO - 127.0.0.1 - - [14/Apr/2025 17:23:37] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 500 -
+2025-04-14 17:23:38,237 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:23:40,104 - INFO - Database initialized successfully
+2025-04-14 17:23:40,145 - WARNING -  * Debugger is active!
+2025-04-14 17:23:40,149 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:23:59,200 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:23:59,201 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:23:59,449 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:24:37,204 - INFO - Database initialized successfully
+2025-04-14 17:24:37,275 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 17:24:37,275 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 17:24:37,290 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:24:39,086 - INFO - Database initialized successfully
+2025-04-14 17:24:39,122 - WARNING -  * Debugger is active!
+2025-04-14 17:24:39,129 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:24:42,856 - INFO - 127.0.0.1 - - [14/Apr/2025 17:24:42] "POST /login HTTP/1.1" 200 -
+2025-04-14 17:25:04,633 - WARNING - Member 2014 is not in the group
+2025-04-14 17:25:04,635 - INFO - 127.0.0.1 - - [14/Apr/2025 17:25:04] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 17:27:10,014 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:10,017 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:10,456 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:27:12,492 - INFO - Database initialized successfully
+2025-04-14 17:27:12,525 - WARNING -  * Debugger is active!
+2025-04-14 17:27:12,532 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:27:19,425 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:19,426 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:19,426 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:19,742 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:27:21,783 - INFO - Database initialized successfully
+2025-04-14 17:27:21,816 - WARNING -  * Debugger is active!
+2025-04-14 17:27:21,823 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:27:22,796 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:22,799 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:22,966 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:27:24,981 - INFO - Database initialized successfully
+2025-04-14 17:27:25,016 - WARNING -  * Debugger is active!
+2025-04-14 17:27:25,021 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:27:28,801 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:28,803 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:27:29,203 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:27:31,108 - INFO - Database initialized successfully
+2025-04-14 17:27:31,135 - WARNING -  * Debugger is active!
+2025-04-14 17:27:31,148 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:29:07,457 - INFO - 127.0.0.1 - - [14/Apr/2025 17:29:07] "[31m[1mPOST /addUser HTTP/1.1[0m" 401 -
+2025-04-14 17:29:29,452 - INFO - 127.0.0.1 - - [14/Apr/2025 17:29:29] "POST /login HTTP/1.1" 200 -
+2025-04-14 17:29:59,088 - INFO - 127.0.0.1 - - [14/Apr/2025 17:29:59] "[35m[1mPOST /addUser HTTP/1.1[0m" 201 -
+2025-04-14 17:30:47,876 - INFO - 127.0.0.1 - - [14/Apr/2025 17:30:47] "POST /login HTTP/1.1" 200 -
+2025-04-14 17:31:13,404 - INFO - 127.0.0.1 - - [14/Apr/2025 17:31:13] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 415 -
+2025-04-14 17:31:36,226 - INFO - 127.0.0.1 - - [14/Apr/2025 17:31:36] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 400 -
+2025-04-14 17:39:37,118 - INFO - 127.0.0.1 - - [14/Apr/2025 17:39:37] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 17:39:57,125 - INFO - 127.0.0.1 - - [14/Apr/2025 17:39:57] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 401 -
+2025-04-14 17:40:31,472 - INFO - 127.0.0.1 - - [14/Apr/2025 17:40:31] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 400 -
+2025-04-14 17:41:47,801 - INFO - 127.0.0.1 - - [14/Apr/2025 17:41:47] "[31m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 400 -
+2025-04-14 17:43:18,866 - ERROR - Error updating menu: 1146 (42S02): Table 'cs432cims.Lunch_menu' doesn't exist
+2025-04-14 17:43:18,866 - INFO - 127.0.0.1 - - [14/Apr/2025 17:43:18] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 500 -
+2025-04-14 17:45:26,608 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:26,609 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:26,815 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:45:28,625 - ERROR - Database initialization failed: name 'db_config' is not defined
+2025-04-14 17:45:28,661 - WARNING -  * Debugger is active!
+2025-04-14 17:45:28,668 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:45:31,875 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:31,875 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:32,820 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:45:34,479 - ERROR - Database initialization failed: name 'db_config' is not defined
+2025-04-14 17:45:34,506 - WARNING -  * Debugger is active!
+2025-04-14 17:45:34,514 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:45:38,945 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:38,946 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:39,682 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:45:41,413 - ERROR - Database initialization failed: name 'db_config' is not defined
+2025-04-14 17:45:41,454 - WARNING -  * Debugger is active!
+2025-04-14 17:45:41,462 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:45:52,184 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:52,185 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:45:52,678 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:45:54,827 - INFO - Database initialized successfully
+2025-04-14 17:45:54,865 - WARNING -  * Debugger is active!
+2025-04-14 17:45:54,883 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 17:45:59,406 - ERROR - Error updating menu: 1146 (42S02): Table 'cs432cims.Lunch_menu' doesn't exist
+2025-04-14 17:45:59,408 - INFO - 127.0.0.1 - - [14/Apr/2025 17:45:59] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 500 -
+2025-04-14 17:46:42,566 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 17:46:43,418 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 17:46:45,288 - INFO - Database initialized successfully
+2025-04-14 17:46:45,330 - WARNING -  * Debugger is active!
+2025-04-14 17:46:45,332 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:08:15,726 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:08:15,726 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:08:16,006 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:10:08,420 - INFO - Database initialized successfully
+2025-04-14 18:10:08,451 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 18:10:08,451 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 18:10:08,465 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:10:09,305 - INFO - Database initialized successfully
+2025-04-14 18:10:09,313 - WARNING -  * Debugger is active!
+2025-04-14 18:10:09,313 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:10:16,174 - INFO - 127.0.0.1 - - [14/Apr/2025 18:10:16] "PUT /council/menu/update/lunch HTTP/1.1" 200 -
+2025-04-14 18:26:35,030 - INFO - 127.0.0.1 - - [14/Apr/2025 18:26:35] "GET /dbcon HTTP/1.1" 200 -
+2025-04-14 18:26:42,825 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:26:42,826 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:26:43,000 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:26:43,784 - INFO - Database initialized successfully
+2025-04-14 18:26:43,801 - WARNING -  * Debugger is active!
+2025-04-14 18:26:43,801 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:26:48,713 - INFO - 127.0.0.1 - - [14/Apr/2025 18:26:48] "GET /dbcon HTTP/1.1" 200 -
+2025-04-14 18:30:20,536 - INFO - 127.0.0.1 - - [14/Apr/2025 18:30:20] "PUT /council/menu/update/lunch HTTP/1.1" 200 -
+2025-04-14 18:35:19,883 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:35:19,889 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:35:20,959 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:35:23,129 - INFO - Database initialized successfully
+2025-04-14 18:35:23,166 - WARNING -  * Debugger is active!
+2025-04-14 18:35:23,174 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:36:11,318 - ERROR - Error updating menu: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE Day = 'Monday'' at line 1
+2025-04-14 18:36:11,318 - INFO - 127.0.0.1 - - [14/Apr/2025 18:36:11] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 500 -
+2025-04-14 18:36:47,100 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:36:47,102 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:36:48,194 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:36:50,312 - INFO - Database initialized successfully
+2025-04-14 18:36:50,370 - WARNING -  * Debugger is active!
+2025-04-14 18:36:50,381 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:36:59,244 - INFO - Executing query: INSERT INTO Lunch_menu (Month, Day, Salad, Dal, Vegetable, Rice_Side, Dairy_Product, Chapati, Pickle_Lemon) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) with values: ('May', 'Monday', 'carrot', 'massor', 'mushroom', 'rice', 'chass', 'chapati', 'lemon')
+2025-04-14 18:36:59,284 - INFO - 127.0.0.1 - - [14/Apr/2025 18:36:59] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 201 -
+2025-04-14 18:42:40,144 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:42:40,144 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:42:40,436 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:43:57,380 - INFO - Database initialized successfully
+2025-04-14 18:43:57,457 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-14 18:43:57,457 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-14 18:43:57,480 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:43:59,232 - INFO - Database initialized successfully
+2025-04-14 18:43:59,277 - WARNING -  * Debugger is active!
+2025-04-14 18:43:59,285 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:43:59,832 - INFO - Executing query: 
+        INSERT INTO Lunch_menu (Month, Day, Salad, Dal, Vegetable, Rice_Side, Dairy_Product, Chapati, Pickle_Lemon) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) 
+        ON DUPLICATE KEY UPDATE Month = VALUES(Month), Day = VALUES(Day), Salad = VALUES(Salad), Dal = VALUES(Dal), Vegetable = VALUES(Vegetable), Rice_Side = VALUES(Rice_Side), Dairy_Product = VALUES(Dairy_Product), Chapati = VALUES(Chapati), Pickle_Lemon = VALUES(Pickle_Lemon)
+         with values: ('May', 'Monday', 'carrot', 'massor', 'mushroom', 'rice', 'chass', 'chapati', 'lemon')
+2025-04-14 18:43:59,839 - INFO - 127.0.0.1 - - [14/Apr/2025 18:43:59] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 201 -
+2025-04-14 18:44:12,361 - INFO - Executing query: 
+        INSERT INTO Lunch_menu (Month, Day, Salad, Dal, Vegetable, Rice_Side, Dairy_Product, Chapati, Pickle_Lemon) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) 
+        ON DUPLICATE KEY UPDATE Month = VALUES(Month), Day = VALUES(Day), Salad = VALUES(Salad), Dal = VALUES(Dal), Vegetable = VALUES(Vegetable), Rice_Side = VALUES(Rice_Side), Dairy_Product = VALUES(Dairy_Product), Chapati = VALUES(Chapati), Pickle_Lemon = VALUES(Pickle_Lemon)
+         with values: ('May', 'Monday', 'carrot', 'massor', 'mushroom', 'rice', 'chass', 'chapati', 'aam ka aachar')
+2025-04-14 18:44:12,400 - INFO - 127.0.0.1 - - [14/Apr/2025 18:44:12] "[35m[1mPUT /council/menu/update/lunch HTTP/1.1[0m" 201 -
+2025-04-14 18:44:22,876 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:44:22,878 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:44:23,645 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:44:25,492 - INFO - Database initialized successfully
+2025-04-14 18:44:25,528 - WARNING -  * Debugger is active!
+2025-04-14 18:44:25,528 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:44:58,358 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:44:58,361 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:44:58,929 - INFO -  * Restarting with watchdog (windowsapi)
+2025-04-14 18:45:00,936 - INFO - Database initialized successfully
+2025-04-14 18:45:00,976 - WARNING -  * Debugger is active!
+2025-04-14 18:45:00,981 - INFO -  * Debugger PIN: 900-019-735
+2025-04-14 18:45:17,740 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:45:17,742 - INFO -  * Detected change in 'C:\\Users\\npkas\\Databases\\dinewell_db_api\\main.py', reloading
+2025-04-14 18:45:18,255 - INFO -  * Restarting with watchdog (windowsapi)
