@@ -1,0 +1,125 @@
+CREATE TABLE Income (
+    Meal ENUM('Breakfast', 'Lunch', 'Snacks', 'Dinner') NOT NULL,
+    Date DATE NOT NULL,
+    Amount DECIMAL(10,2) DEFAULT 0,  
+    TransactionID INT NOT NULL,  
+    UpdatedBy varchar(50) NOT NULL,  
+    PRIMARY KEY (Meal, Date,TransactionID),
+    FOREIGN KEY (UpdatedBy) REFERENCES cs432cims.payments(Receiver) ON DELETE CASCADE,
+    FOREIGN KEY (TransactionID) REFERENCES cs432cims.payments(TransactionID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Inventory (
+    ItemId INT CHECK (ItemId BETWEEN 1000 AND 9999) PRIMARY KEY,
+    Product_name VARCHAR(255) NOT NULL,
+    Quantity DECIMAL(10,2) CHECK (Quantity >= 0) NOT NULL,
+    Unit ENUM('kg', 'ltr', 'pcs') NOT NULL,
+    Min_quantity_req DECIMAL(10,2) CHECK (Min_quantity_req >= 0) NOT NULL,
+    Expiry_date DATE,
+    TotalCost DECIMAL(10,2) CHECK (TotalCost >= 0) NOT NULL,
+    Date_of_order DATE NOT NULL,
+    Current_quantity DECIMAL(10,2) CHECK (Current_quantity >= 0) NOT NULL,
+    UpdatedBy INT NOT NULL, 
+    FOREIGN KEY (UpdatedBy) REFERENCES cs432cims.members(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE Vendors (
+    ItemId INT NOT NULL,
+    Vendorname VARCHAR(255) NOT NULL,
+    Vendor_contact_no CHAR(10) NOT NULL,
+    Amount DECIMAL(10,2) CHECK (Amount >= 0),
+    Quantity_ordered DECIMAL(10,2) CHECK (Quantity_ordered >= 0),
+    Unit ENUM('kg', 'ltr', 'pcs') NOT NULL,
+    TransactionID INT,
+    PRIMARY KEY (ItemId, TransactionID),
+	FOREIGN KEY (ItemId) REFERENCES Inventory(ItemId) ,
+    FOREIGN KEY (TransactionID) REFERENCES cs432cims.payments(TransactionID) ON DELETE CASCADE
+);
+
+CREATE TABLE Breakfast_menu (
+    Month ENUM("January","February","March","April","May","June","July","August","September","October","November","December") NOT NULL,
+    Day ENUM("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday") NOT NULL,
+    Breakfast_meal VARCHAR(255) NOT NULL,
+    Side_item VARCHAR(255),
+    Pickle_Lemon VARCHAR(255),
+    Eggs VARCHAR(255) NOT NULL,
+    Bread_butter_jam VARCHAR(255) NOT NULL,
+    Hot_Beverage VARCHAR(255) NOT NULL,
+    Chocos_Cornflake VARCHAR(255) NOT NULL,
+    Flavoured_powder VARCHAR(255) NOT NULL,
+    Fruit VARCHAR(255) NOT NULL,
+    PRIMARY KEY (Month, Day)
+);
+
+CREATE TABLE Lunch_menu (
+    Month ENUM("January","February","March","April","May","June","July","August","September","October","November","December") NOT NULL,
+    Day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+    Salad VARCHAR(255) NOT NULL,
+    Dal VARCHAR(255) NOT NULL,
+    Vegetable VARCHAR(255) NOT NULL,
+    Legume_Curry VARCHAR(255),
+    Rice_Side VARCHAR(255) NOT NULL,
+    Dairy_Product VARCHAR(255) NOT NULL,
+    Chapati VARCHAR(255) NOT NULL,
+    Pickle_Lemon VARCHAR(255),
+    Papad_Fryums VARCHAR(255),
+    PRIMARY KEY (Month, Day)
+);
+
+CREATE TABLE Snacks_menu (
+    Month ENUM("January","February","March","April","May","June","July","August","September","October","November","December") NOT NULL,
+    Day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+    Snacks VARCHAR(255) NOT NULL,
+    Dips_Chutney VARCHAR(255),
+    Cold_Beverage VARCHAR(255) NOT NULL,
+    Hot_Beverage VARCHAR(255) NOT NULL,
+    PRIMARY KEY (Month, Day)
+);
+
+CREATE TABLE Dinner_menu (
+    Month ENUM("January","February","March","April","May","June","July","August","September","October","November","December") NOT NULL,
+    Day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+    Salad VARCHAR(255),
+    Dal VARCHAR(255) NOT NULL,
+    Vegetable VARCHAR(255) NOT NULL,
+    Rice VARCHAR(255) NOT NULL,
+    Chapati VARCHAR(255) NOT NULL,
+    Pickle_Lemon VARCHAR(255),
+    Special_item VARCHAR(255),
+    Non_veg VARCHAR(255),
+    PRIMARY KEY (Month, Day)
+);
+
+CREATE TABLE Utilities (
+    Name VARCHAR(255) NOT NULL,  
+    Amount DECIMAL(10,2) NOT NULL, 
+    TransactionID INT NOT NULL,
+    FOREIGN KEY (TransactionID) REFERENCES cs432cims.payments(TransactionID) ON DELETE CASCADE
+    PRIMARY KEY (Name,TransactionID)
+);
+
+CREATE TABLE EmployeeSalary (
+    MemberID INT NOT NULL,  
+    Month DATE NOT NULL,  
+    NoOfDays INT CHECK (NoOfDays BETWEEN 0 AND 31) NOT NULL,  
+    SalaryPerDay DECIMAL(10,2) CHECK (SalaryPerDay >= 0) NOT NULL,  
+    TotalSalary DECIMAL(10,2) GENERATED ALWAYS AS (NoOfDays * SalaryPerDay) STORED,  
+    PRIMARY KEY (MemberID, Month),  
+    FOREIGN KEY (MemberID) REFERENCES cs432cims.members(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE G14_AuditLogs (
+    MemberID INT PRIMARY KEY,  
+    LogID INT NOT NULL AUTOINCREMENT,  
+    Action VARCHAR(255),
+    Timestamp DATETIME 
+);
+
+CREATE TABLE G14_AuditLogs (
+    LogID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+    MemberID INT NOT NULL,  
+    Action VARCHAR(255),
+    Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID) ON DELETE CASCADE
+);
