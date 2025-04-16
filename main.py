@@ -325,6 +325,19 @@ def add_user():
 
         addLogs(user_id, 'Add User', datetime.datetime.utcnow())
 
+
+        if data['role'] == 'Employee':
+            local_conn = get_db_local_connection()
+            local_cursor = local_conn.cursor()
+            salary = data.get('salary', 500)
+            # Add to EmployeeSalary table
+            local_cursor.execute("""
+                INSERT INTO EmployeeSalary (MemberID, NoOfDays, SalaryPerDay, Month)
+                VALUES (%s, 0, %s, %s)
+            """, (user_id, salary, datetime.datetime.utcnow().strftime('%Y-%m-01')))
+            local_conn.commit()
+            local_cursor.close()
+
         return jsonify({"message": "User created successfully"}), 201
 
     except mysql.connector.Error as e:
@@ -362,10 +375,27 @@ def delete_user():
 
         member_id = result[0]
 
+        cursor.execute("SELECT Role FROM Login WHERE MemberID = %s", (member_id,))
+        result = cursor.fetchone()
+        if not result:
+            return jsonify({"error": "User not found"}), 404
+        role = result[0]
+
+        if role == 'Employee':
+            # Check if the user is in group 14
+            if not is_member_of_group(member_id):
+                return jsonify({"error": "User not part of Group 14"}), 403
+            
+            local_conn = get_db_local_connection()
+            local_cursor = local_conn.cursor()
+            local_cursor.execute("DELETE FROM EmployeeSalary WHERE MemberID = %s", (member_id,))
+            local_conn.commit()
+            local_cursor.close()
+            
         # Get all groups the user belongs to
         cursor.execute("SELECT GroupID FROM MemberGroupMapping WHERE MemberID = %s", (member_id,))
         groups = [row[0] for row in cursor.fetchall()]
-
+        
         if 14 not in groups:
             return jsonify({"error": "User is not in group 14"}), 400
 
@@ -387,6 +417,7 @@ def delete_user():
             addLogs(member_id, 'Delete User Mapping from group 14', datetime.datetime.utcnow())
             return jsonify({"message": "User removed from group 14, but retained in other groups."}), 200
 
+
     except mysql.connector.Error as e:
         conn.rollback()
         logging.error(f"Database error: {str(e)}")
@@ -401,7 +432,7 @@ def delete_user():
             conn.close()
 
 # 4. Removing expired inventory items
-@app.route('/admin/inventory/remove_expired', methods=['DELETE'])
+@app.route('/admin/inventory/remove_expired', methods=['PUT'])
 @token_required(required_role='Admin')
 def remove_expired_inventory():
     session_token = request.cookies.get("session_token")
@@ -420,7 +451,8 @@ def remove_expired_inventory():
         conn = get_db_local_connection()
         cursor = conn.cursor()
         cursor.execute("""
-            DELETE FROM Inventory
+            UPDATE Inventory
+            SET Current_quantity = 0
             WHERE Expiry_date < CURDATE()
         """)
         conn.commit()
@@ -459,10 +491,10 @@ def view_salaries():
         cursor.close()
         conn.close()
 
-# 6. Update daily revenue
-@app.route('/admin/revenue_update', methods=['PUT'])
+# 6. Add employee salary
+@app.route('/admin/add_salary', methods=['POST'])
 @token_required(required_role='Admin')
-def update_revenue():
+def add_employee_salary():
     session_token = request.cookies.get("session_token")
     payload = jwt.decode(
         session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
@@ -470,36 +502,29 @@ def update_revenue():
 
     if not is_valid_session() or not is_member_of_group(member_id):
         logging.warning(
-            f"Unauthorized revenue update attempt by member {member_id}")
+            f"Unauthorized salary addition attempt by member {member_id}")
         return jsonify({"error": "Unauthorized"}), 401
 
     data = request.get_json()
-    required_fields = ["Inventory", "Payment", "Salary",
-                       "Utilities", "Month"]
+    required_fields = ["MemberID", "SalaryPerDay", "Month"]
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
 
     try:
-        conn = get_db_connection()
+        conn = get_db_local_connection()
+        numDays = data.get("NoOfDays", 0)
         cursor = conn.cursor()
         cursor.execute("""
-            INSERT INTO G14_revenue (Month, Inventory, Payment, Salary, Utilities)
-            VALUES (%s, %s, %s, %s, %s)
+            INSERT INTO EmployeeSalary (MemberID, SalaryPerDay, Month, NoOfDays)
+            VALUES (%s, %s, %s, %s)
             ON DUPLICATE KEY UPDATE
-            Inventory = VALUES(Inventory),
-            Payment = VALUES(Payment),
-            Salary = VALUES(Salary),
-            Utilities = VALUES(Utilities)
-        """, (
-            data["Month"], data["Inventory"], data["Payment"],
-            data["Salary"], data["Utilities"]
-        ))
-
+            SalaryPerDay = VALUES(SalaryPerDay)
+        """, (data["MemberID"], data["SalaryPerDay"], data["Month"], numDays))
         conn.commit()
-        addLogs(member_id, 'Update Revenue', datetime.datetime.utcnow())
-        return jsonify({"message": "Revenue updated successfully"}), 200
+        addLogs(member_id, 'Add Employee Salary', datetime.datetime.utcnow())
+        return jsonify({"message": "Employee salary added successfully"}), 201
     except Exception as e:
-        logging.error(f"Error updating revenue: {str(e)}")
+        logging.error(f"Error adding employee salary: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
     finally:
         cursor.close()
@@ -532,10 +557,10 @@ def view_inventory():
         cursor.close()
         conn.close()
 
-# 8. Check list of vendors
-@app.route('/admin/vendors', methods=['GET'])
+# 8. Check list of orders
+@app.route('/admin/orders', methods=['GET'])
 @token_required(required_role='Admin')
-def view_vendors():
+def view_orders():
     session_token = request.cookies.get("session_token")
     payload = jwt.decode(
         session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
@@ -543,7 +568,7 @@ def view_vendors():
 
     if not is_valid_session() or not is_member_of_group(member_id):
         logging.warning(
-            f"Unauthorized vendor view attempt by member {member_id}")
+            f"Unauthorized order view attempt by member {member_id}")
         return jsonify({"error": "Unauthorized"}), 401
 
     try:
@@ -562,7 +587,7 @@ def view_vendors():
 # 9. Place vendor order
 @app.route('/admin/place_order', methods=['POST'])
 @token_required(required_role='Admin')
-def add_new_vendor():
+def place_order():
     session_token = request.cookies.get("session_token")
     payload = jwt.decode(
         session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
@@ -597,6 +622,7 @@ def add_new_vendor():
             data["Date"]
         ))
         cims_conn.commit()
+        addLogs(member_id, 'Add Payment', datetime.datetime.utcnow())
 
         local_conn = get_db_local_connection()
         local_cursor = local_conn.cursor()
@@ -607,13 +633,12 @@ def add_new_vendor():
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON DUPLICATE KEY UPDATE
             Product_name = VALUES(Product_name),
-            Quantity = VALUES(Quantity),
+            Quantity = Quantity + VALUES(Quantity),
             Unit = VALUES(Unit),
             Min_quantity_req = VALUES(Min_quantity_req),
-            Expiry_date = VALUES(Expiry_date),
-            TotalCost = VALUES(TotalCost),
+            TotalCost = TotalCost + VALUES(TotalCost),
             Date_of_order = VALUES(Date_of_order),
-            Current_quantity = VALUES(Current_quantity),
+            Current_quantity = Current_quantity + VALUES(Current_quantity),
             UpdatedBy = VALUES(UpdatedBy)
         """, (
             data["ItemId"],
@@ -632,13 +657,12 @@ def add_new_vendor():
         # 3. Add to vendors table in cs432g14
         local_cursor.execute("""
             INSERT INTO Vendors (ItemId, Vendorname, Vendor_contact_no, Quantity_ordered, Unit, TransactionID, Amount)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON DUPLICATE KEY UPDATE
             Vendorname = VALUES(Vendorname),
             Vendor_contact_no = VALUES(Vendor_contact_no),
-            Quantity_ordered = VALUES(Quantity_ordered),
+            Quantity_ordered = Quantity_ordered + VALUES(Quantity_ordered),
             Unit = VALUES(Unit),
-            TransactionID = VALUES(TransactionID)
             Amount = VALUES(Amount)
         """, (
             data["ItemId"],
@@ -649,8 +673,21 @@ def add_new_vendor():
             data["TransactionID"],
             data["TotalCost"]
         ))
-
         local_conn.commit()
+
+        cims_conn = get_db_connection()
+        cims_cursor = cims_conn.cursor()
+
+        month_start = datetime.datetime.strptime(data["Date"], '%Y-%m-%d').replace(day=1).strftime('%Y-%m-01')
+        cims_cursor.execute("""
+            INSERT INTO G14_revenue (Month, Payment, Inventory, Salary, Utilities)
+            VALUES (%s, 0, %s, 0, 0)
+            ON DUPLICATE KEY UPDATE
+            Inventory = Inventory + VALUES(Inventory)
+        """, (month_start, data["TotalCost"]))
+        cims_conn.commit()
+        addLogs(member_id, 'Update Inventory in G14_revenue', datetime.datetime.utcnow())
+        
         return jsonify({"message": "Vendor order, payment, and inventory record added successfully"}), 201
 
     except mysql.connector.Error as e:
@@ -672,57 +709,17 @@ def add_new_vendor():
             local_cursor.close()
         if 'local_conn' in locals():
             local_conn.close()
-
-# 10. Delete an item from inventory
-@app.route('/admin/inventory/delete/<int:item_id>', methods=['DELETE'])
-@token_required(required_role='Admin')
-def delete_inventory_item(item_id):
-    session_token = request.cookies.get("session_token")
-    payload = jwt.decode(
-        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
-    member_id = payload['user_id']
-
-    if not is_valid_session() or not is_member_of_group(member_id):
-        logging.warning(
-            f"Unauthorized inventory delete attempt by member {member_id}")
-        return jsonify({"error": "Unauthorized"}), 401
-
-    try:
-        conn = get_db_local_connection()
-        cursor = conn.cursor()
-
-        # Check if the item exists
-        cursor.execute("SELECT * FROM Inventory WHERE ItemId = %s", (item_id,))
-        item = cursor.fetchone()
-        if not item:
-            return jsonify({"error": "Item not found"}), 404
-
-        # Delete the item
-        cursor.execute("DELETE FROM Inventory WHERE ItemId = %s", (item_id,))
-        conn.commit()
-
-        addLogs(member_id, f"Deleted inventory item with ID {item_id}", datetime.datetime.utcnow())
-        return jsonify({"message": "Item deleted successfully"}), 200
-
-    except Exception as e:
-        logging.error(f"Error deleting inventory item: {str(e)}")
-        return jsonify({"error": "Internal server error"}), 500
-    finally:
-        cursor.close()
-        conn.close()
-
-# 11. Update inventory quantity
+    
+# 10. Update inventory quantity
 @app.route('/admin/inventory/update_quantity/<int:item_id>', methods=['PUT'])
 @token_required(required_role='Admin')
 def update_inventory_quantity(item_id):
     session_token = request.cookies.get("session_token")
-    payload = jwt.decode(
-        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
     member_id = payload['user_id']
 
     if not is_valid_session() or not is_member_of_group(member_id):
-        logging.warning(
-            f"Unauthorized inventory update attempt by member {member_id}")
+        logging.warning(f"Unauthorized inventory update attempt by member {member_id}")
         return jsonify({"error": "Unauthorized"}), 401
 
     data = request.get_json()
@@ -730,25 +727,50 @@ def update_inventory_quantity(item_id):
         return jsonify({"error": "Missing 'quantity' field"}), 400
 
     try:
+        quantity_to_reduce = data['quantity']
+        if quantity_to_reduce <= 0:
+            return jsonify({"error": "Quantity must be a positive integer"}), 400
+
         conn = get_db_local_connection()
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
 
-        # Check if the item exists
-        cursor.execute("SELECT * FROM Inventory WHERE ItemId = %s", (item_id,))
-        item = cursor.fetchone()
-        if not item:
-            return jsonify({"error": "Item not found"}), 404
-
-        # Update the quantity
+        # Fetch inventory entries for this item, ordered by expiry date
         cursor.execute("""
-            UPDATE Inventory
-            SET Current_quantity = %s
-            WHERE ItemId = %s
-        """, (data['quantity'], item_id))
-        conn.commit()
+            SELECT ItemId, Expiry_date, Current_quantity
+            FROM Inventory
+            WHERE ItemId = %s AND Current_quantity > 0
+            ORDER BY Expiry_date ASC
+        """, (item_id,))
+        entries = cursor.fetchall()
 
-        addLogs(member_id, f"Updated inventory item {item_id} quantity to {data['quantity']}", datetime.datetime.utcnow())
-        return jsonify({"message": "Item quantity updated successfully"}), 200
+        if not entries:
+            return jsonify({"error": "No inventory entries found for this item"}), 404
+
+        remaining_to_reduce = quantity_to_reduce
+        for entry in entries:
+            current_quantity = entry['Current_quantity']
+            if remaining_to_reduce <= 0:
+                break
+
+            deduct = min(current_quantity, remaining_to_reduce)
+            new_quantity = current_quantity - deduct
+
+            cursor.execute("""
+                UPDATE Inventory
+                SET Current_quantity = %s
+                WHERE ItemId = %s AND Expiry_date = %s
+            """, (new_quantity, item_id, entry['Expiry_date']))
+
+            remaining_to_reduce -= deduct
+
+        if remaining_to_reduce > 0:
+            return jsonify({
+                "warning": f"Only {quantity_to_reduce - remaining_to_reduce} units deducted. Not enough stock to fulfill full reduction."
+            }), 206  # Partial Content
+
+        conn.commit()
+        addLogs(member_id, f"Reduced item {item_id} quantity by {quantity_to_reduce}", datetime.datetime.utcnow())
+        return jsonify({"message": f"Item quantity reduced by {quantity_to_reduce} successfully"}), 200
 
     except Exception as e:
         logging.error(f"Error updating inventory quantity: {str(e)}")
@@ -757,57 +779,378 @@ def update_inventory_quantity(item_id):
         cursor.close()
         conn.close()
 
-# 12. Punch in
+# 11. Punch in
 @app.route('/admin/punch_in/<int:employee_id>', methods=['POST'])
 @token_required(required_role='Admin')
 def admin_punch_in(employee_id):
     session_token = request.cookies.get("session_token")
-    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
-    admin_id = payload['user_id']
+    try:
+        payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        admin_id = payload['user_id']
+    except Exception as e:
+        logging.warning("JWT decode failed")
+        return jsonify({"error": "Unauthorized"}), 401
 
     if not is_valid_session() or not is_member_of_group(admin_id):
-        logging.warning(f"Unauthorized punch-in attempt by admin {admin_id}")
+        logging.warning(f"Invalid punch-in attempt by admin {admin_id}")
         return jsonify({"error": "Unauthorized"}), 401
 
     try:
-        today = datetime.date.today()
-        month_start = today.replace(day=1)  # Normalize to first day of current month
+        data = request.get_json()
+        month_str = data.get("month")  # Expecting format: "YYYY-MM"
+
+        if not month_str:
+            return jsonify({"error": "Missing 'month' in request body. Expected format: 'YYYY-MM'."}), 400
+
+        try:
+            month_start = datetime.datetime.strptime(month_str, "%Y-%m").date()
+        except ValueError:
+            return jsonify({"error": "Invalid month format. Use 'YYYY-MM'."}), 400
+
+        # Connect to primary database (cs432g14)
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # Verify employee exists and has correct role
+        cursor.execute("""
+            SELECT m.ID, l.Role
+            FROM members m
+            JOIN Login l ON m.ID = l.MemberID
+            WHERE m.ID = %s AND l.Role = 'Employee'
+        """, (employee_id,))
+        employee = cursor.fetchone()
+        conn.commit()
+        conn.close()
+
+        if not employee:
+            return jsonify({"error": "Invalid employee ID or the member is not an Employee"}), 404
 
         conn = get_db_local_connection()
-        cursor = conn.cursor()
-
-        # Check if record exists
+        cursor = conn.cursor(dictionary=True)
+        # Check if EmployeeSalary record exists
         cursor.execute("""
-            SELECT NoOfDays FROM EmployeeSalary
+            SELECT NoOfDays, SalaryPerDay FROM EmployeeSalary
             WHERE MemberID = %s AND Month = %s
         """, (employee_id, month_start))
+        salary_record = cursor.fetchone()
 
-        result = cursor.fetchone()
+        if not salary_record:
+            return jsonify({"error": f"No salary record found for employee {employee_id} for {month_str}."}), 404
 
-        if result:
-            # Update NoOfDays
-            cursor.execute("""
-                UPDATE EmployeeSalary
-                SET NoOfDays = NoOfDays + 1
-                WHERE MemberID = %s AND Month = %s
-            """, (employee_id, month_start))
-        else:
-            # Insert new entry with NoOfDays = 1 (you can customize SalaryPerDay)
-            default_salary = 500.00
-            cursor.execute("""
-                INSERT INTO EmployeeSalary (MemberID, Month, NoOfDays, SalaryPerDay)
-                VALUES (%s, %s, %s, %s)
-            """, (employee_id, month_start, 1, default_salary))
-
+        # Update NoOfDays
+        cursor.execute("""
+            UPDATE EmployeeSalary
+            SET NoOfDays = NoOfDays + 1
+            WHERE MemberID = %s AND Month = %s
+        """, (employee_id, month_start))
         conn.commit()
+
+        # Update G14_revenue in cs432cims using new connection
+        salary_per_day = salary_record['SalaryPerDay']
+        current_month = datetime.datetime.utcnow().strftime('%Y-%m-01')
+
+        conn_cims = mysql.connector.connect(
+            host="10.0.116.125",
+            user="cs432g14",
+            password="YqJ5XnTz",
+            database="cs432cims"
+        )
+        cursor_cims = conn_cims.cursor()
+
+        cursor_cims.execute("""
+            INSERT INTO G14_revenue (Month, Payment, Inventory, Salary, Utilities)
+            VALUES (%s, 0, 0, %s, 0)
+            ON DUPLICATE KEY UPDATE
+            Salary = Salary + VALUES(Salary)
+        """, (current_month, salary_per_day))
+        conn_cims.commit()
+
         return jsonify({"message": f"Punch-in successful for employee {employee_id}"}), 200
 
     except Exception as e:
         logging.error(f"Error during punch-in for employee {employee_id}: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
+
+    finally:
+        try:
+            cursor.close()
+            conn.close()
+        except:
+            pass
+        try:
+            cursor_cims.close()
+            conn_cims.close()
+        except:
+            pass
+
+
+# 12. Update income table
+@app.route('/admin/add_income', methods=['POST'])
+@token_required(required_role='Admin')
+def add_income():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(f"Unauthorized income addition attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json()
+    required_fields = ['Meal', 'Amount', 'TransactionID']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields: Meal, Amount, TransactionID"}), 400
+
+    meal = data['Meal']
+    amount = data['Amount']
+    transaction_id = data['TransactionID']
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # Check if transaction exists in payments
+        cursor.execute("USE cs432cims")
+        cursor.execute("""
+            SELECT Sender, Receiver, Date
+            FROM payments
+            WHERE TransactionID = %s
+        """, (transaction_id,))
+        payment_info = cursor.fetchone()
+
+        # Extract or fallback to request
+        sender = (payment_info['Sender'] if payment_info and payment_info['Sender'] else data.get('Sender'))
+        receiver = (payment_info['Receiver'] if payment_info and payment_info['Receiver'] else data.get('Receiver'))
+        payment_date = (payment_info['Date'] if payment_info and payment_info['Date'] else data.get('Date'))
+
+        # Check for missing fields
+        if not (sender and receiver and payment_date):
+            return jsonify({
+                "error": "TransactionID not in payments – either update payments table or provide full transaction details in request (Sender, Receiver, Date)"
+            }), 400
+
+        # If transaction doesn't exist in payments, insert it
+        if not payment_info:
+            cursor.execute("""
+                INSERT INTO payments (TransactionID, Sender, Receiver, Date)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                Sender = VALUES(Sender),
+                Receiver = VALUES(Receiver),
+                Date = VALUES(Date)
+            """, (transaction_id, sender, receiver, payment_date))
+            addLogs(member_id, f"Added transaction for TxnID {transaction_id}", datetime.datetime.utcnow())
+            conn.commit()
+
+        # Now add to Income table
+        cursor.execute("USE cs432g14")
+        cursor.execute("""
+            INSERT INTO Income (Meal, Date, Amount, TransactionID)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+            Amount = VALUES(Amount),
+            Date = VALUES(Date)  
+        """, (meal, payment_date, amount, transaction_id))
+
+        # Update G14_revenue table in cs432cims
+        cursor.execute("USE cs432cims")
+        month_start = payment_date.replace(day=1).strftime('%Y-%m-01')
+        cursor.execute("""
+            INSERT INTO G14_revenue (Month, Payment, Inventory, Salary, Utilities)
+            VALUES (%s, %s, 0, 0, 0)
+            ON DUPLICATE KEY UPDATE
+            Payment = Payment + VALUES(Payment)
+        """, (month_start, amount))
+        conn.commit()
+        addLogs(member_id, f"Added income and transaction for TxnID {transaction_id}", datetime.datetime.utcnow())
+
+        return jsonify({"message": "Income entry added successfully"}), 201
+
+    except Exception as e:
+        logging.error(f"Error adding income entry: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
     finally:
         cursor.close()
         conn.close()
+
+# 13. Update utilities table
+@app.route('/admin/add_utility', methods=['POST'])
+@token_required(required_role='Admin')
+def add_utility():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json()
+    required_fields = ['Name', 'Amount', 'TransactionID']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    name = data['Name']
+    amount = data['Amount']
+    txn_id = data['TransactionID']
+    sender = data.get('Sender')
+    receiver = data.get('Receiver')
+    txn_date = data.get('Date')  # YYYY-MM-DD
+
+    try:
+        # Connect to cs432cims to check payments
+        conn_cims = get_db_connection()
+        cursor_cims = conn_cims.cursor(dictionary=True)
+
+        cursor_cims.execute("SELECT * FROM payments WHERE TransactionID = %s", (txn_id,))
+        txn = cursor_cims.fetchone()
+
+        if not txn:
+            if not (sender and receiver and txn_date):
+                return jsonify({
+                    "error": "TransactionID not found in payments. Please provide Sender, Receiver, and Date, or add the transaction first."
+                }), 400
+
+            cursor_cims.execute("""
+                INSERT INTO payments (TransactionID, Sender, Receiver, Date)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                Sender = VALUES(Sender),
+                Receiver = VALUES(Receiver),
+                Date = VALUES(Date)
+            """, (txn_id, sender, receiver, txn_date))
+            conn_cims.commit()
+
+            txn = {'Date': txn_date}  # Use provided date for revenue update
+
+        # Get the month from transaction date
+        txn_month = datetime.datetime.strptime(str(txn['Date']), "%Y-%m-%d").strftime("%Y-%m-01")
+
+        # Insert or update in G14_revenue for utilities
+        cursor_cims.execute("""
+            INSERT INTO G14_revenue (Month, Payment, Inventory, Salary, Utilities)
+            VALUES (%s, 0, 0, 0, %s)
+            ON DUPLICATE KEY UPDATE
+            Utilities = Utilities + VALUES(Utilities)
+        """, (txn_month, amount))
+        conn_cims.commit()
+
+        cursor_cims.close()
+        conn_cims.close()
+
+        # Insert into cs432g14.Utilities
+        conn_util = get_db_local_connection()
+        cursor_util = conn_util.cursor()
+
+        cursor_util.execute("""
+            INSERT INTO Utilities (Name, Amount, TransactionID, Date)
+            VALUES (%s, %s, %s, %s)
+            ON DUPLICATE KEY UPDATE
+            Amount = Amount + VALUES(Amount),
+            Date = VALUES(Date)
+        """, (name, amount, txn_id, txn['Date']))
+        conn_util.commit()
+
+        cursor_util.close()
+        conn_util.close()
+
+        return jsonify({"message": f"Utility '{name}' of amount ₹{amount} added successfully."}), 201
+
+    except Exception as e:
+        logging.error(f"Error adding utility: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        try:
+            cursor_cims.close()
+            conn_cims.close()
+        except:
+            pass
+        try:
+            cursor_util.close()
+            conn_util.close()
+        except:
+            pass
+
+# 14. View revenue
+@app.route('/admin/revenue', methods=['GET'])
+@token_required(required_role='Admin')
+def view_revenue():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(f"Unauthorized revenue view attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM G14_revenue")
+        revenue_data = cursor.fetchall()
+        return jsonify(revenue_data), 200
+    except Exception as e:
+        logging.error(f"Error fetching revenue data: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+# 15. List uitilities
+@app.route('/admin/list_utilities', methods=['GET'])
+@token_required(required_role='Admin')
+def list_utilities():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(f"Unauthorized utility view attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Utilities")
+        utilities_data = cursor.fetchall()
+        return jsonify(utilities_data), 200
+    except Exception as e:
+        logging.error(f"Error fetching utilities data: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+# 16. Alerts
+@app.route('/admin/alerts', methods=['GET'])
+@token_required(required_role='Admin')
+def view_alerts():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(f"Unauthorized alert view attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("""
+            SELECT ItemId, Product_name, SUM(Current_quantity) AS Total_quantity, Min_quantity_req
+            FROM Inventory
+            GROUP BY ItemId, Product_name, Min_quantity_req
+            HAVING Total_quantity < Min_quantity_req
+        """)
+        alerts_data = cursor.fetchall()
+        return jsonify(alerts_data), 200
+    except Exception as e:
+        logging.error(f"Error fetching alerts data: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+
 
 
 
@@ -818,9 +1161,13 @@ def admin_punch_in(employee_id):
 @token_required(required_role='Employee')
 def employee_salary():
     session_token = request.cookies.get("session_token")
-    payload = jwt.decode(
-        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
-    member_id = payload['user_id']
+    try:
+        payload = jwt.decode(
+            session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+        member_id = payload['user_id']
+    except Exception as e:
+        logging.warning("JWT decode failed")
+        return jsonify({"error": "Unauthorized"}), 401
 
     if not is_valid_session() or not is_member_of_group(member_id):
         logging.warning(
@@ -828,28 +1175,39 @@ def employee_salary():
         return jsonify({"error": "Unauthorized"}), 401
 
     try:
+        # Use a new local DB connection (cs432g14)
         conn = get_db_local_connection()
         cursor = conn.cursor(dictionary=True)
+
         cursor.execute(
             "SELECT * FROM EmployeeSalary WHERE MemberID = %s", (member_id,))
-        salary_info = cursor.fetchone()
-        if salary_info:
-            return jsonify(salary_info), 200
+        rows = cursor.fetchall()  # Always fetch all to avoid unread result errors
+
+        if rows:
+            return jsonify(rows), 200
         else:
             return jsonify({"error": "Salary information not found"}), 404
+
     except Exception as e:
         logging.error(f"Error fetching salary: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
+
     finally:
-        cursor.close()
-        conn.close()
+        try:
+            cursor.close()
+            conn.close()
+        except:
+            pass
+
+
+
 
 
 
 
 # =========== Council Members APIs ===========
 
-# Update the Menu
+# 1. Update the Menu
 @app.route('/council/menu/update/<meal_type>', methods=['PUT'])  
 @token_required(required_role='Council')
 def add_menu(meal_type):
@@ -907,16 +1265,68 @@ def add_menu(meal_type):
         cursor.close()
         conn.close()
 
+# 2. View complaints
+@app.route('/complaint', methods=['GET'])
+@token_required(required_role='Council')
+def view_complaints():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(
+        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(
+            f"Unauthorized complaint view attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Complaints")
+        complaints = cursor.fetchall()
+        return jsonify(complaints), 200
+    except Exception as e:
+        logging.error(f"Error fetching complaints: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+# 3. View feedback
+@app.route('/feedback', methods=['GET'])
+@token_required(required_role='Council')
+def view_feedback():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(
+        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(
+            f"Unauthorized feedback view attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Feedbacks")
+        feedbacks = cursor.fetchall()
+        return jsonify(feedbacks), 200
+    except Exception as e:
+        logging.error(f"Error fetching feedback: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+        
 
 
 
+# =========== Common APIs ===========
 
-
-
-# =========== Common API for Viewing Menu ===========
-
+# 1. View menu
 @app.route('/menu/<meal_type>', methods=['GET'])
-# No required_role parameter, so any valid user can access it.
 @token_required()
 def view_menu(meal_type):
     session_token = request.cookies.get("session_token")
@@ -954,6 +1364,73 @@ def view_menu(meal_type):
         cursor.close()
         conn.close()
 
+# 2. write feedback
+@app.route('/feedback', methods=['POST'])
+@token_required()
+def feedback():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(
+        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(
+            f"Unauthorized feedback attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json()
+    if not data or 'feedback' not in data:
+        return jsonify({"error": "Feedback is required"}), 400
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT IGNORE INTO Feedbacks (MemberID, Feedback)
+            VALUES (%s, %s)
+        """, (member_id, data['feedback']))
+        conn.commit()
+        return jsonify({"message": "Feedback submitted successfully"}), 201
+    except Exception as e:
+        logging.error(f"Error submitting feedback: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+# 3. Raise complaint
+@app.route('/complaint', methods=['POST'])
+@token_required()
+def raise_complaint():
+    session_token = request.cookies.get("session_token")
+    payload = jwt.decode(
+        session_token, app.config['SECRET_KEY'], algorithms=["HS256"])
+    member_id = payload['user_id']
+
+    if not is_valid_session() or not is_member_of_group(member_id):
+        logging.warning(
+            f"Unauthorized complaint attempt by member {member_id}")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json()
+    if not data or 'complaint' not in data:
+        return jsonify({"error": "Complaint is required"}), 400
+
+    try:
+        conn = get_db_local_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT IGNORE INTO Complaints (MemberID, Complaint)
+            VALUES (%s, %s)
+        """, (member_id, data['complaint']))
+        conn.commit()
+        return jsonify({"message": "Complaint raised successfully"}), 201
+    except Exception as e:
+        logging.error(f"Error raising complaint: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+    finally:
+        cursor.close()
+        conn.close()
 
 
 

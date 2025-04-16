@@ -55,14 +55,15 @@ def view_users():
     print_response(res)
 
 # 2. Add new user
-def add_user(username="TestUsr4", password="TestUsr@123", role="Student", email="testusr@dinewell.com", dob="2003-04-05"):
+def add_user(username="TestUsr4", password="TestUsr@123", role="Student", email="testusr@dinewell.com", dob="2003-04-05", salary=500):
     print("[*] Adding new user...")
     res = session.post(f"{BASE_URL}/admin/addUser", json={
         "username": username,
         "password": password,
         "role": role,
         "email": email,
-        "DoB": dob
+        "DoB": dob,
+        salary: salary
     })
     print_response(res)
 
@@ -75,7 +76,7 @@ def delete_user(email="testusr@dinewell.com"):
 # 4. Remove expired inventory
 def remove_expired_inventory():
     print("[*] Removing expired inventory...")
-    res = session.delete(f"{BASE_URL}/admin/inventory/remove_expired")
+    res = session.put(f"{BASE_URL}/admin/inventory/remove_expired")
     print_response(res)
 
 # 5. View salaries (admin)
@@ -84,19 +85,16 @@ def view_salaries():
     res = session.get(f"{BASE_URL}/admin/salaries")
     print_response(res)
 
-# 6. Update revenue
-def update_revenue():
-    print("[*] Updating revenue...")
+# 6. Add employee salary
+def add_employee_salary():
+    print("[*] Adding employee salary...")
     data = {
-        "Inventory": 1000,
-        "Payment": 2000,
-        "Salary": 3000,
-        "TotalExpense": 6000,
-        "TotalRevenue": 8000,
-        "Utilities": 500,
-        "Month": "2025-04-10"
+        "MemberID": 2260,
+        "SalaryPerDay": 500,
+        "Month": "2025-04-01",
+        "NoOfDays": 0,
     }
-    res = session.put(f"{BASE_URL}/admin/revenue_update", json=data)
+    res = session.post(f"{BASE_URL}/admin/add_salary", json=data)
     print_response(res)
 
 # 7. View inventory
@@ -106,9 +104,9 @@ def view_inventory():
     print_response(res)
 
 # 8. View vendors
-def view_vendors():
+def view_orders():
     print("[*] Viewing vendors...")
-    res = session.get(f"{BASE_URL}/admin/vendors")
+    res = session.get(f"{BASE_URL}/admin/orders")
     print_response(res)
 
 # 9. Place vendor order
@@ -131,26 +129,76 @@ def place_vendor_order():
     res = session.post(f"{BASE_URL}/admin/place_order", json=data)
     print_response(res)
 
-# 10 Delete item from inventory
-def delete_item_from_inventory():
-    print("[*] Deleting item from inventory...")
-    res = session.delete(f"{BASE_URL}/admin/inventory/delete_item", json={"ItemId": 1002})
-    print_response(res)
-    
-# 6. View menu
-def view_menu(meal_type="lunch"):
-    print(f"[*] Viewing {meal_type} menu...")
-    res = session.get(f"{BASE_URL}/menu/{meal_type}")
+# 10. Update inventory quantity
+def update_inventory_quantity(item_id=1002, quantity=50):
+    print("[*] Updating inventory quantity...")
+    res = session.put(f"{BASE_URL}/admin/inventory/update_quantity/{item_id}", json={"quantity": quantity})
     print_response(res)
 
+# 11. Punch in
+def punch_in(employee_id=1):
+    print("[*] Punching in...")
+    res = session.post(f"{BASE_URL}/admin/punch_in/{employee_id}", json={"month": "2025-04"})
+    print_response(res)
+
+# 12. Add income
+def add_income():
+    print("[*] Testing /admin/add_income")
+
+    # Sample transaction data
+    payload = {
+        "Meal": "Lunch",
+        "Amount": 10000,
+        "TransactionID": 123456,  # Ensure this is unique or appropriate
+        "Sender": "Student1",
+        "Receiver": "Admin",
+        "Date": "2025-04-15"
+    }
+
+    res = session.post(f"{BASE_URL}/admin/add_income", json=payload)
+    print_response(res)
+
+# 13. update utilities
+def test_add_utility():
+    print("[*] Testing utility addition...")
+
+    url = f"{BASE_URL}/admin/add_utility"
+    payload = {
+        "Name": "Electricity Bill",
+        "Amount": 200,
+        "TransactionID": 12345678,  # Use a unique or test-safe TransactionID
+        "Sender": "Admin001",
+        "Receiver": "ElectricityDept",
+        "Date": "2025-04-15"  # Use YYYY-MM-DD format
+    }
+
+    response = session.post(url, json=payload)
+    print_response(response)
+
+# 14. View revenue
+def view_revenue():
+    print("[*] Viewing revenue...")
+    res = session.get(f"{BASE_URL}/admin/revenue")
+    print_response(res)
+
+# 15. View utilities
+def view_utilities():
+    print("[*] Viewing utilities...")
+    res = session.get(f"{BASE_URL}/admin/list_utilities")
+    print_response(res)
+
+# 16. Get alerts
+def get_alerts():
+    print("[*] Fetching alerts...")
+    res = session.get(f"{BASE_URL}/admin/alerts")
+    print_response(res)
 
 
 
 
+# ================ Employee APIs =================
 
-
-
-# 14. Employee salary (as employee)
+# 1. Employee salary
 def employee_salary():
     print("[*] Viewing employee salary...")
     res = session.get(f"{BASE_URL}/employee/salary")
@@ -158,17 +206,11 @@ def employee_salary():
 
 
 
-# 16. DB connection check
-def dbcon():
-    print("[*] Checking DB connection...")
-    res = session.get(f"{BASE_URL}/dbcon")
-    print_response(res)
 
 
+# =========== Council Members APIs ===========
 
-
-
-
+# 1. Update menu
 def update_menu():
     print("[*] Updating menu...")
     res = session.put(f"{BASE_URL}/council/menu/update/lunch", json={
@@ -186,51 +228,104 @@ def update_menu():
     })
     print_response(res)
 
-def punch_in():
-    print("[*] Punching in...")
-    res = session.post(f"{BASE_URL}/employee/punch_in")
+# 2. View Feedback
+def view_feedback():
+    print("[*] Viewing feedback...")
+    res = session.get(f"{BASE_URL}/feedback")
+    print_response(res)
+
+# 3. View Complaints
+def view_complaints():
+    print("[*] Viewing complaints...")
+    res = session.get(f"{BASE_URL}/complaint")
     print_response(res)
 
 
+
+
+
+
+# ================= Common APIs ====================
+
+# 1. View menu
+def view_menu(meal_type="lunch"):
+    print(f"[*] Viewing {meal_type} menu...")
+    res = session.get(f"{BASE_URL}/menu/{meal_type}")
+    print_response(res)
+
+# 2. give feedback
+def give_feedback():
+    print("[*] Giving feedback...")
+    res = session.post(f"{BASE_URL}/feedback", json={
+        "feedback": "The food was delicious!"
+    })
+    print_response(res)
+
+# 3. Raise complaint
+def raise_complaint():
+    print("[*] Raising complaint...")
+    res = session.post(f"{BASE_URL}/complaint", json={
+        "complaint": "The food was too spicy!"
+    })
+    print_response(res)
+
+
+
+
+
+
+
+# =========== Role based tests ===========
+
 def test_admin_apis() :
     login("admin@dinewell.com", "Admin@123")
+    ping()
+    is_valid_session()
     view_users()
     add_user()
-    view_salaries()
-    view_inventory()    
-    view_menu("lunch")
-    view_vendors()
-    place_vendor_order()
-    update_revenue()
-    remove_expired_inventory()
     delete_user("testusr@dinewell.com")
-    is_valid_session()
-    ping()
+    remove_expired_inventory()
+    view_salaries()
+    add_employee_salary()
+    view_inventory()    
+    view_orders()
+    place_vendor_order()
+    update_inventory_quantity(1002, 50)
+    punch_in(2260)
+    add_income()
+    view_menu("lunch")
+    test_add_utility()
+    view_revenue()
+    view_utilities()
+    give_feedback()
+    raise_complaint()
+    get_alerts()
     logout()
 
 def test_employee_apis() :
     login("employee1@dinewell.com", "Employee1@123")
-    view_menu("lunch")
-    punch_in()
-    employee_salary()
-    is_valid_session()
     ping()
+    is_valid_session()
+    employee_salary()
+    view_menu("lunch")
     logout()
 
 def test_council_apis() :
     login("council@dinewell.com", "Council@123")
-    view_menu("lunch")
-    update_menu()
-    is_valid_session()
     ping()
+    is_valid_session()
+    update_menu()
+    view_menu("lunch")
     logout()
 
 def student_apis() :
     login("student1@dinewell.com", "Student1@123")
-    view_menu("lunch")
-    is_valid_session()
     ping()
+    is_valid_session()
+    view_menu("lunch")
     logout()
+
+
 
 
 if __name__ == "__main__":
@@ -245,5 +340,16 @@ if __name__ == "__main__":
 
 
 # login("admin@dinewell.com", "Admin@123")
-# add_user(username="Student1", password="Student1@123", email="student1@dinewell.com", role="Student", dob="2003-04-05")
+# add_user(username="Employee3", password="Employee3@123", email="employee3@dinewell.com", role="Employee", dob="2003-04-05", salary=500)
+# delete_user("employee3@dinewell.com")
+# # test_add_utility()
+# # view_revenue()
+# # view_utilities()
+# give_feedback()
+# raise_complaint()
+# logout()
+
+# login("council@dinewell.com", "Council@123")
+# view_feedback()
+# view_complaints()
 # logout()
