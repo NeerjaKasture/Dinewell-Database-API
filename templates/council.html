@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Council Dashboard - DINEWELL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #0a2463; /* Navy blue */
+            --secondary-color: #3e92cc;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .user-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info {
+            margin-right: 20px;
+            text-align: right;
+        }
+        
+        .logout-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .council-panel {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .welcome-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .menu-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .menu-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(10, 36, 99, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #051c4e;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .menu-content {
+            margin-top: 20px;
+        }
+        
+        .menu-item {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .menu-item-actions button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .menu-item-actions button:hover {
+            text-decoration: underline;
+        }
+        
+        .menu-item-description {
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .menu-item-details {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .menu-item-details span {
+            margin-right: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .menu-form {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .dynamic-fields {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>DINEWELL</h1>
+                    <p>MESS MANAGEMENT SYSTEM</p>
+                </div>
+                <div class="user-controls">
+                    <div class="user-info">
+                        <p>Welcome, <span id="council-name">Council Member</span></p>
+                        <p>Role: Council Member</p>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="council-panel">
+            <div class="welcome-section">
+                <h2>Council Member Dashboard</h2>
+                <p>Manage and update the mess menu</p>
+            </div>
+
+            <div id="menu-alert" class="alert"></div>
+
+            <div class="menu-tabs">
+                <div class="menu-tab active" data-meal="breakfast">Breakfast</div>
+                <div class="menu-tab" data-meal="lunch">Lunch</div>
+                <div class="menu-tab" data-meal="dinner">Dinner</div>
+                <div class="menu-tab" data-meal="snacks">Snacks</div>
+            </div>
+
+            <div class="menu-content">
+                <div class="menu-form">
+                    <h3>Add/Update Menu Item</h3>
+                    <form id="menu-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="Month">Month</label>
+                                <select id="Month" name="Month" class="form-control" required>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Day">Day</label>
+                                <select id="Day" name="Day" class="form-control" required>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Dynamic fields will be added here based on meal type -->
+                        <div id="dynamic-fields" class="dynamic-fields"></div>
+                        
+                        <button type="submit" class="btn btn-primary">Update Menu</button>
+                    </form>
+                </div>
+
+                <h3>Current Menu Items</h3>
+                <div id="menu-items-container">
+                    <p>Select a month and day to view menu items</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>CS432: Databases Project</p>
+        <p>Made by: Anura Mantri, Neerja Kasture, Sumeet Sawale and Yash Patkar</p>
+        <p>© 2025 DINEWELL Mess Management System</p>
+    </footer>
+
+    <script src="/static/council.js"></script>
+</body>
+</html>

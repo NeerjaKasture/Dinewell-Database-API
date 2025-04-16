@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - DINEWELL</title>
+    <style>
+        :root {
+            --primary-color: #0a2463;
+            --secondary-color: #3e92cc;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f5f5; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { background-color: var(--primary-color); color: white; padding: 20px 0; margin-bottom: 30px; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 24px; font-weight: 700; }
+        .logo p { font-size: 14px; opacity: 0.8; }
+        .user-controls { display: flex; align-items: center; }
+        .user-info { margin-right: 20px; text-align: right; }
+        .logout-btn { background-color: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        .logout-btn:hover { background-color: rgba(255,255,255,0.3); }
+        .student-panel { background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px; }
+        .welcome-section { text-align: center; margin-bottom: 30px; }
+        .welcome-section h2 { color: var(--primary-color); margin-bottom: 10px; }
+        .tab-bar { display: flex; justify-content: center; margin-bottom: 20px; border-bottom: 1px solid #ddd; }
+        .tab-btn { padding: 10px 20px; cursor: pointer; font-weight: 600; color: #555; border-bottom: 3px solid transparent; transition: all 0.3s; background: none; border: none; }
+        .tab-btn:hover { color: var(--primary-color); }
+        .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .date-selection { display: flex; align-items: flex-end; gap: 15px; margin-bottom: 20px; background-color: var(--light-color); padding: 15px; border-radius: 8px; }
+        .date-selection .form-group { margin-bottom: 0; flex: 1; }
+        .date-selection .btn { height: 40px; background-color: var(--primary-color); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; font-weight: 600; }
+        .date-selection .btn:hover { background-color: #051c4e; }
+        @media (max-width: 768px) {
+            .date-selection { flex-direction: column; align-items: stretch; }
+            .date-selection .form-group { margin-bottom: 10px; }
+        }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; color: #555; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .menu-content { margin-top: 20px; }
+        .menu-table { width: 100%; border-collapse: collapse; }
+        .menu-table th, .menu-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        .menu-table th { background-color: var(--light-color); color: var(--dark-color); font-weight: 600; }
+        .menu-table tr:hover { background-color: #f8f9fa; }
+        .alert { padding: 12px; border-radius: 4px; margin-bottom: 15px; display: none; }
+        .alert-danger { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .loading { text-align: center; padding: 20px; color: #666; }
+        .feedback-form, .complaint-form { margin-top: 30px; }
+        .feedback-form textarea, .complaint-form textarea { width: 100%; min-height: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .feedback-form button, .complaint-form button { margin-top: 10px; background-color: var(--primary-color); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .feedback-form button:hover, .complaint-form button:hover { background-color: #051c4e; }
+        footer { text-align: center; margin-top: 50px; padding: 20px; color: #6c757d; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>DINEWELL</h1>
+                    <p>MESS MANAGEMENT SYSTEM</p>
+                </div>
+                <div class="user-controls">
+                    <div class="user-info">
+                        <p>Welcome, <span id="student-name">Student</span></p>
+                        <p>Role: Student</p>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="student-panel">
+            <div class="welcome-section">
+                <h2>Student Dashboard</h2>
+                <p>View menu, submit feedback, or raise a complaint</p>
+            </div>
+            <div class="tab-bar">
+                <button class="tab-btn active" data-tab="viewmenu">View Menu</button>
+                <button class="tab-btn" data-tab="feedback">Feedback</button>
+                <button class="tab-btn" data-tab="complaint">Complaint</button>
+            </div>
+            <div id="viewmenu" class="tab-content active">
+                <div id="menu-alert" class="alert"></div>
+                <div class="menu-tabs">
+                    <div class="menu-tab active" data-meal="breakfast">Breakfast</div>
+                    <div class="menu-tab" data-meal="lunch">Lunch</div>
+                    <div class="menu-tab" data-meal="snacks">Snacks</div>
+                    <div class="menu-tab" data-meal="dinner">Dinner</div>
+                </div>
+                <div class="date-selection">
+                    <div class="form-group">
+                        <label for="month-select">Month:</label>
+                        <select id="month-select" class="form-control">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="day-select">Day:</label>
+                        <select id="day-select" class="form-control">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <button id="view-menu-btn" class="btn">View Menu</button>
+                </div>
+                <div class="menu-content">
+                    <div id="menu-loading" class="loading" style="display:none;">Loading menu...</div>
+                    <table id="menu-table" class="menu-table" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Item Type</th>
+                                <th>Food Item</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menu-items"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="feedback" class="tab-content">
+                <form id="feedback-form" class="feedback-form">
+                    <label for="feedback-text">Your Feedback:</label>
+                    <textarea id="feedback-text" required></textarea>
+                    <button type="submit">Submit Feedback</button>
+                    <div id="feedback-alert" class="alert" style="margin-top:10px;"></div>
+                </form>
+            </div>
+            <div id="complaint" class="tab-content">
+                <form id="complaint-form" class="complaint-form">
+                    <label for="complaint-text">Your Complaint:</label>
+                    <textarea id="complaint-text" required></textarea>
+                    <button type="submit">Raise Complaint</button>
+                    <div id="complaint-alert" class="alert" style="margin-top:10px;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>CS432: Databases Project</p>
+        <p>Made by: Anura Mantri, Neerja Kasture, Sumeet Sawale and Yash Patkar</p>
+        <p>© 2025 DINEWELL Mess Management System</p>
+    </footer>
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Feedback form
+        document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('feedback-text').value.trim();
+            const alertEl = document.getElementById('feedback-alert');
+            alertEl.style.display = 'none';
+            if (!feedback) {
+                showAlert(alertEl, 'Feedback cannot be empty', 'danger');
+                return;
+            }
+            try {
+                const res = await fetch('/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ feedback })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showAlert(alertEl, data.message, 'success');
+                    this.reset();
+                } else {
+                    showAlert(alertEl, data.error || 'Failed to submit feedback', 'danger');
+                }
+            } catch (err) {
+                showAlert(alertEl, 'Network error', 'danger');
+            }
+        });
+
+        // Complaint form
+        document.getElementById('complaint-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const complaint = document.getElementById('complaint-text').value.trim();
+            const alertEl = document.getElementById('complaint-alert');
+            alertEl.style.display = 'none';
+            if (!complaint) {
+                showAlert(alertEl, 'Complaint cannot be empty', 'danger');
+                return;
+            }
+            try {
+                const res = await fetch('/complaint', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ complaint })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    showAlert(alertEl, data.message, 'success');
+                    this.reset();
+                } else {
+                    showAlert(alertEl, data.error || 'Failed to raise complaint', 'danger');
+                }
+            } catch (err) {
+                showAlert(alertEl, 'Network error', 'danger');
+            }
+        });
+
+        function showAlert(element, message, type) {
+            element.textContent = message;
+            element.className = `alert alert-${type === 'success' ? 'success' : 'danger'}`;
+            element.style.display = 'block';
+            setTimeout(() => { element.style.display = 'none'; }, 3000);
+        }
+    </script>
+    <script src="/static/student.js"></script>
+</body>
+</html>

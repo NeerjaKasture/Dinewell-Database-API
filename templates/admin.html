@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DINEWELL</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #0a2463;
+            --secondary-color: #3e92cc;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .user-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .logout-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 2px;
+            background-color: #fff;
+            padding: 0 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .tab:hover {
+            color: var(--primary-color);
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Cards and Forms */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(10, 36, 99, 0.2);
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #051c4e;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #bd2130;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>DINEWELL</h1>
+                    <p>MESS MANAGEMENT SYSTEM</p>
+                </div>
+                <div class="user-controls">
+                    <div class="user-info">
+                        <p>Welcome, <span id="admin-name">Admin</span></p>
+                        <p>Role: Administrator</p>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="user-management">User Management</button>
+            <button class="tab" data-tab="employee-management">Employee Management</button>
+            <button class="tab" data-tab="inventory-management">Inventory Management</button>
+            <button class="tab" data-tab="utility-management">Utility Management</button>
+            <button class="tab" data-tab="revenue-update">Revenue Update</button>
+            <button class="tab" data-tab="vendor-orders">Vendors Update</button>
+        </div>
+
+        <!-- User Management Tab -->
+        <div id="user-management" class="tab-content active">
+            <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Add User Card -->
+                <div class="card">
+                    <h2>Add New User</h2>
+                    <div id="add-user-alert" class="alert"></div>
+                    <form id="add-user-form">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" class="form-control" required>
+                                <option value="">Select a role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Council">Council Member</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Student">Student</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </form>
+                </div>
+
+                <!-- Delete User Card -->
+                <div class="card">
+                    <h2>Delete User</h2>
+                    <div id="delete-user-alert" class="alert"></div>
+                    <form id="delete-user-form">
+                        <div class="form-group">
+                            <label for="delete-email">User Email</label>
+                            <input type="email" id="delete-email" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Delete User</button>
+                    </form>
+                    
+                    <div class="user-list" id="user-list">
+                        <h3>Current Users</h3>
+                        <p>Loading users...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employee Management Tab -->
+        <div id="employee-management" class="tab-content">
+            <div class="card">
+                <h2>Employee Salaries</h2>
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Employee Punch-In</h3>
+                    </div>
+                    <form id="punch-in-form">
+                        <div class="form-group">
+                            <label for="employee-id">Employee ID</label>
+                            <input type="number" id="employee-id" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Record Punch-In</button>
+                    </form>
+                    <div id="punch-in-alert" class="alert" style="margin-top: 15px;"></div>
+                </div>
+                <div id="salaries-alert" class="alert"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Member ID</th>
+                            <th>No. of Days</th>
+                            <th>Salary/Day</th>
+                            <th>Total Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salaries-list">
+                        <tr>
+                            <td colspan="5" style="text-align: center;">Loading employee salaries...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Vendor Orders Tab -->
+        <div id="vendor-orders" class="tab-content">
+            <div class="card">
+                <h2>Vendor Orders</h2>
+                <button id="refresh-orders" class="btn">Refresh Orders</button>
+                <table id="orders-table" border="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Vendor Name</th>
+                            <th>Contact No.</th>
+                            <th>Amount (₹)</th>
+                            <th>Quantity Ordered</th>
+                            <th>Unit</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <h3>Place Vendor Order</h3>
+                <form id="place-order-form">
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                        <div>
+                            <label>Item ID</label>
+                            <input type="number" id="order-itemid" required>
+                        </div>
+                        <div>
+                            <label>Product Name</label>
+                            <input type="text" id="order-productname" required>
+                        </div>
+                        <div>
+                            <label>Vendor Name</label>
+                            <input type="text" id="order-vendorname" required>
+                        </div>
+                        <div>
+                            <label>Vendor Contact No.</label>
+                            <input type="text" id="order-vendorcontact" required>
+                        </div>
+                        <div>
+                            <label>Quantity Ordered</label>
+                            <input type="number" id="order-quantity" step="0.01" required>
+                        </div>
+                        <div>
+                            <label>Unit</label>
+                            <input type="text" id="order-unit" required>
+                        </div>
+                        <div>
+                            <label>Transaction ID</label>
+                            <input type="text" id="order-txnid" required>
+                        </div>
+                        <div>
+                            <label>Sender</label>
+                            <input type="text" id="order-sender" required>
+                        </div>
+                        <div>
+                            <label>Date</label>
+                            <input type="date" id="order-date" required>
+                        </div>
+                        <div>
+                            <label>Min Quantity Req</label>
+                            <input type="number" id="order-minqty" step="0.01" required>
+                        </div>
+                        <div>
+                            <label>Expiry Date</label>
+                            <input type="date" id="order-expiry" required>
+                        </div>
+                        <div>
+                            <label>Total Cost (₹)</label>
+                            <input type="number" id="order-totalcost" step="0.01" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Place Order</button>
+                    <div id="order-alert" class="alert" style="margin-top: 10px;"></div>
+                </form>
+            </div>
+        </div>
+        <!-- Inventory Management Tab -->
+        <div id="inventory-management" class="tab-content">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0;">Current Inventory</h2>
+                    <button id="remove-expired-btn" class="btn btn-danger">Mark Expired as Out of Stock</button>
+                </div>
+                <div id="inventory-alert" class="alert"></div>
+                <div id="inventory-loading" class="loading" style="display:none;">Loading inventory items...</div>
+                <div id="inventory-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Product Name</th>
+                                <th>Current Quantity</th>
+                                <th>Min Required</th>
+                                <th>Unit</th>
+                                <th>Expiry Date</th>
+                                <th>Total Cost</th>
+                                <th>Order Date</th>
+                                <th>Updated By</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-items">
+                            <tr>
+                                <td colspan="11" style="text-align: center;">Loading inventory items...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Update Quantity Form -->
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <h3 class="card-title">Update Inventory Quantity</h3>
+                </div>
+                <form id="update-quantity-form">
+                    <div style="display: flex; gap: 20px; align-items: flex-end;">
+                        <div class="form-group">
+                            <label for="update-item-id">Item ID</label>
+                            <input type="number" id="update-item-id" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update-quantity">Consumed Quantity</label>
+                            <input type="number" id="update-quantity" class="form-control" required>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Update Quantity</button>
+                        </div>
+                    </div>
+                    <div id="update-quantity-alert" class="alert" style="margin-top: 10px;"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Utility Management Tab -->
+        <div id="utility-management" class="tab-content">
+            <div class="card">
+                <h2>Utility Management</h2>
+                
+                <!-- Add Utility Form -->
+                <form id="add-utility-form">
+                    <div>
+                        <label for="utility-name">Name:</label>
+                        <input type="text" id="utility-name" name="Name" required>
+                    </div>
+                    <div>
+                        <label for="utility-amount">Amount (₹):</label>
+                        <input type="number" id="utility-amount" name="Amount" step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="utility-txnid">Transaction ID:</label>
+                        <input type="text" id="utility-txnid" name="TransactionID" required>
+                    </div>
+                    <!-- New Fields -->
+                    <div>
+                        <label for="utility-sender">Sender:</label>
+                        <input type="text" id="utility-sender" name="Sender">
+                    </div>
+                    <div>
+                        <label for="utility-receiver">Receiver:</label>
+                        <input type="text" id="utility-receiver" name="Receiver">
+                    </div>
+                    <div>
+                        <label for="utility-date">Date:</label>
+                        <input type="date" id="utility-date" name="Date">
+                    </div>
+                    <button type="submit">Add Utility</button>
+                </form>
+                
+                <hr>
+                
+                <!-- Utilities Table -->
+                <h3>Utilities List</h3>
+                <table id="utilities-table" border="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount (₹)</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Utilities will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Revenue Update Tab -->
+        <div id="revenue-update" class="tab-content">
+            <div class="card">
+                <h2>Revenue Update</h2>
+                <button id="refresh-revenue" class="btn">Refresh Data</button>
+                
+                <table id="revenue-table" border="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Payment (₹)</th>
+                            <th>Inventory (₹)</th>
+                            <th>Salary (₹)</th>
+                            <th>Utilities (₹)</th>
+                            <th>Total Expense (₹)</th>
+                            <th>Total Revenue (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>CS432: Databases Project</p>
+        <p>Made by: Anura Mantri, Neerja Kasture, Sumeet Sawale and Yash Patkar</p>
+        <p>© 2025 DINEWELL Mess Management System</p>
+    </footer>
+
+    <script src="/static/admin.js"></script>
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
