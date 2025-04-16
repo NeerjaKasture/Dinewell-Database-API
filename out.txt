@@ -1,0 +1,210 @@
+================ Testing Admin APIs ========
+[*] Logging in...
+URL: http://localhost:5000/login
+Status: 200
+Response: {'message': 'Login successful', 'user': {'id': 1176, 'name': 'admin', 'role': 'Admin'}}
+--------------------------------------------------
+[*] Pinging server...
+URL: http://localhost:5000/ping
+Status: 200
+Raw Response: pong
+--------------------------------------------------
+[*] Checking session validity...
+URL: http://localhost:5000/isValidSession?session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTc2LCJyb2xlIjoiQWRtaW4iLCJleHAiOjE3NDQ4NDEyOTN9.MqYgoVl6CEv4BCVG1mWjrDE53T1mOKqw7PprFKRTAHs
+Status: 200
+Response: {'valid': True}
+--------------------------------------------------
+[*] Fetching users...
+URL: http://localhost:5000/admin/users
+Status: 200
+Response: [{'DoB': 'Sat, 01 Jan 2000 00:00:00 GMT', 'ID': 1176, 'Role': 'Admin', 'UserName': 'admin', 'emailID': 'admin@dinewell.com'}, {'DoB': 'Sat, 05 Apr 2003 00:00:00 GMT', 'ID': 2176, 'Role': 'Student', 'UserName': 'TestUsr3', 'emailID': 'testusr3@example.com'}, {'DoB': 'Tue, 15 Apr 2025 00:00:00 GMT', 'ID': 2239, 'Role': 'Student', 'UserName': 'student0', 'emailID': 'student0@dinewell.com'}, {'DoB': 'Fri, 11 Apr 2025 00:00:00 GMT', 'ID': 2242, 'Role': 'Student', 'UserName': 'student3', 'emailID': 'student3@dinewell.com'}, {'DoB': 'Tue, 01 Apr 2025 00:00:00 GMT', 'ID': 2244, 'Role': 'Council', 'UserName': 'council1', 'emailID': 'council1@dinewell.com'}, {'DoB': 'Sat, 05 Apr 2003 00:00:00 GMT', 'ID': 2259, 'Role': 'Council', 'UserName': 'Council', 'emailID': 'council@dinewell.com'}, {'DoB': 'Sat, 05 Apr 2003 00:00:00 GMT', 'ID': 2260, 'Role': 'Employee', 'UserName': 'employee1', 'emailID': 'employee1@dinewell.com'}, {'DoB': 'Sat, 05 Apr 2003 00:00:00 GMT', 'ID': 2264, 'Role': 'Student', 'UserName': 'Student1', 'emailID': 'student1@dinewell.com'}, {'DoB': 'Sat, 05 Apr 2003 00:00:00 GMT', 'ID': 24210132, 'Role': 'Student', 'UserName': 'Student2', 'emailID': 'student2@dinewell.com'}, {'DoB': 'Wed, 02 Apr 2025 00:00:00 GMT', 'ID': 24210158, 'Role': 'Employee', 'UserName': 'employee2', 'emailID': 'employee2@dinewell.com'}, {'DoB': 'Wed, 16 Apr 2025 00:00:00 GMT', 'ID': 24210246, 'Role': 'Student', 'UserName': 'student10', 'emailID': 'student10@dinewell.com'}]
+--------------------------------------------------
+[*] Adding new user...
+URL: http://localhost:5000/admin/addUser
+Status: 201
+Response: {'message': 'User created successfully'}
+--------------------------------------------------
+[*] Deleting user...
+URL: http://localhost:5000/admin/deleteUser
+Status: 200
+Response: {'message': 'User was only in group 14 and has been fully deleted.'}
+--------------------------------------------------
+[*] Removing expired inventory...
+URL: http://localhost:5000/admin/inventory/remove_expired
+Status: 200
+Response: {'message': 'Expired items removed successfully'}
+--------------------------------------------------
+[*] Viewing employee salaries...
+URL: http://localhost:5000/admin/salaries
+Status: 200
+Response: [{'MemberID': 2260, 'Month': 'Tue, 01 Apr 2025 00:00:00 GMT', 'NoOfDays': 12, 'SalaryPerDay': '500.00', 'TotalSalary': '6000.00'}]
+--------------------------------------------------
+[*] Adding employee salary...
+URL: http://localhost:5000/admin/add_salary
+Status: 201
+Response: {'message': 'Employee salary added successfully'}
+--------------------------------------------------
+[*] Viewing inventory...
+URL: http://localhost:5000/admin/inventory
+Status: 200
+Response: [{'Current_quantity': '3.00', 'Date_of_order': 'Wed, 16 Apr 2025 00:00:00 GMT', 'Expiry_date': 'Fri, 18 Apr 2025 00:00:00 GMT', 'ItemId': 1001, 'Min_quantity_req': '3.00', 'Product_name': 'apple', 'Quantity': '5.00', 'TotalCost': '500.00', 'Unit': 'kg', 'UpdatedBy': 1176}, {'Current_quantity': '0.00', 'Date_of_order': 'Sun, 30 Mar 2025 00:00:00 GMT', 'Expiry_date': 'Tue, 01 Apr 2025 00:00:00 GMT', 'ItemId': 1002, 'Min_quantity_req': '3.00', 'Product_name': 'grapes', 'Quantity': '2.00', 'TotalCost': '150.00', 'Unit': 'kg', 'UpdatedBy': 1176}, {'Current_quantity': '0.00', 'Date_of_order': 'Thu, 10 Apr 2025 00:00:00 GMT', 'Expiry_date': 'Sun, 01 Jun 2025 00:00:00 GMT', 'ItemId': 1002, 'Min_quantity_req': '10.00', 'Product_name': 'Wheat', 'Quantity': '50.00', 'TotalCost': '5000.00', 'Unit': 'kg', 'UpdatedBy': 1176}, {'Current_quantity': '48.00', 'Date_of_order': 'Wed, 16 Apr 2025 00:00:00 GMT', 'Expiry_date': 'Wed, 23 Apr 2025 00:00:00 GMT', 'ItemId': 1003, 'Min_quantity_req': '10.00', 'Product_name': 'bananas', 'Quantity': '48.00', 'TotalCost': '560.00', 'Unit': 'pcs', 'UpdatedBy': 1176}]
+--------------------------------------------------
+[*] Viewing vendors...
+URL: http://localhost:5000/admin/orders
+Status: 200
+Response: [{'Amount': '500.00', 'ItemId': 1001, 'Quantity_ordered': '5.00', 'TransactionID': 1111, 'Unit': 'kg', 'Vendor_contact_no': '1231231231', 'Vendorname': 'Ramesh'}, {'Amount': '5000.00', 'ItemId': 1002, 'Quantity_ordered': '50.00', 'TransactionID': 1111, 'Unit': 'kg', 'Vendor_contact_no': '9876543210', 'Vendorname': 'Acme Supplies'}, {'Amount': '150.00', 'ItemId': 1002, 'Quantity_ordered': '2.00', 'TransactionID': 12345, 'Unit': 'kg', 'Vendor_contact_no': '9879879876', 'Vendorname': 'Suresh'}, {'Amount': '560.00', 'ItemId': 1003, 'Quantity_ordered': '48.00', 'TransactionID': 456789, 'Unit': 'pcs', 'Vendor_contact_no': '1231231231', 'Vendorname': 'Ramesh'}]
+--------------------------------------------------
+[*] Adding new vendor...
+URL: http://localhost:5000/admin/place_order
+Status: 201
+Response: {'message': 'Vendor order, payment, and inventory record added successfully'}
+--------------------------------------------------
+[*] Updating inventory quantity...
+URL: http://localhost:5000/admin/inventory/update_quantity/1002
+Status: 200
+Response: {'message': 'Item quantity reduced by 50 successfully'}
+--------------------------------------------------
+[*] Punching in...
+URL: http://localhost:5000/admin/punch_in/2260
+Status: 200
+Response: {'message': 'Punch-in successful for employee 2260'}
+--------------------------------------------------
+[*] Testing /admin/add_income
+URL: http://localhost:5000/admin/add_income
+Status: 201
+Response: {'message': 'Income entry added successfully'}
+--------------------------------------------------
+[*] Viewing lunch menu...
+URL: http://localhost:5000/menu/lunch
+Status: 200
+Response: [{'Chapati': 'Whole Wheat Chapati', 'Dairy_Product': 'Curd', 'Dal': 'Toor Dal', 'Day': 'Monday', 'Legume_Curry': 'Chana Masala', 'Month': 'May', 'Papad_Fryums': 'Masala Papad', 'Pickle_Lemon': 'Lemon Pickle', 'Rice_Side': 'Jeera Rice', 'Salad': 'Cucumber Tomato Salad', 'Vegetable': 'Mixed Veg Curry'}]
+--------------------------------------------------
+[*] Testing utility addition...
+URL: http://localhost:5000/admin/add_utility
+Status: 201
+Response: {'message': "Utility 'Electricity Bill' of amount ₹200 added successfully."}
+--------------------------------------------------
+[*] Viewing revenue...
+URL: http://localhost:5000/admin/revenue
+Status: 200
+Response: [{'Inventory': '35860.00', 'Month': 'Tue, 01 Apr 2025 00:00:00 GMT', 'Payment': '60120.50', 'Salary': '3500.00', 'TotalExpense': '55760.00', 'TotalRevenue': '4360.50', 'Utilities': '16400.00'}]
+--------------------------------------------------
+[*] Viewing utilities...
+URL: http://localhost:5000/admin/list_utilities
+Status: 200
+Response: [{'Amount': '400.00', 'Date': 'Tue, 15 Apr 2025 00:00:00 GMT', 'Name': 'Electricity Bill', 'TransactionID': 12345678}, {'Amount': '5000.00', 'Date': 'Wed, 09 Apr 2025 00:00:00 GMT', 'Name': 'electricitybill', 'TransactionID': 123456}, {'Amount': '10000.00', 'Date': 'Tue, 01 Apr 2025 00:00:00 GMT', 'Name': 'Gas', 'TransactionID': 876543}]
+--------------------------------------------------
+[*] Giving feedback...
+URL: http://localhost:5000/feedback
+Status: 201
+Response: {'message': 'Feedback submitted successfully'}
+--------------------------------------------------
+[*] Raising complaint...
+URL: http://localhost:5000/complaint
+Status: 201
+Response: {'message': 'Complaint raised successfully'}
+--------------------------------------------------
+[*] Fetching alerts...
+URL: http://localhost:5000/admin/alerts
+Status: 200
+Response: [{'ItemId': 1002, 'Min_quantity_req': '3.00', 'Product_name': 'grapes', 'Total_quantity': '0.00'}, {'ItemId': 1002, 'Min_quantity_req': '10.00', 'Product_name': 'Wheat', 'Total_quantity': '0.00'}]
+--------------------------------------------------
+[*] Logging out...
+URL: http://localhost:5000/logout
+Status: 200
+Response: {'message': 'Successfully logged out'}
+--------------------------------------------------
+
+
+================ Testing Employee APIs ========
+[*] Logging in...
+URL: http://localhost:5000/login
+Status: 200
+Response: {'message': 'Login successful', 'user': {'id': 2260, 'name': 'employee1', 'role': 'Employee'}}
+--------------------------------------------------
+[*] Pinging server...
+URL: http://localhost:5000/ping
+Status: 200
+Raw Response: pong
+--------------------------------------------------
+[*] Checking session validity...
+URL: http://localhost:5000/isValidSession?session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMjYwLCJyb2xlIjoiRW1wbG95ZWUiLCJleHAiOjE3NDQ4NDEyOTh9.wjOh3xziAxs2T12b0D8rxhu_5NYwdZCirIVOC7vkcf0
+Status: 200
+Response: {'valid': True}
+--------------------------------------------------
+[*] Viewing employee salary...
+URL: http://localhost:5000/employee/salary
+Status: 200
+Response: [{'MemberID': 2260, 'Month': 'Tue, 01 Apr 2025 00:00:00 GMT', 'NoOfDays': 13, 'SalaryPerDay': '500.00', 'TotalSalary': '6500.00'}]
+--------------------------------------------------
+[*] Viewing lunch menu...
+URL: http://localhost:5000/menu/lunch
+Status: 200
+Response: [{'Chapati': 'Whole Wheat Chapati', 'Dairy_Product': 'Curd', 'Dal': 'Toor Dal', 'Day': 'Monday', 'Legume_Curry': 'Chana Masala', 'Month': 'May', 'Papad_Fryums': 'Masala Papad', 'Pickle_Lemon': 'Lemon Pickle', 'Rice_Side': 'Jeera Rice', 'Salad': 'Cucumber Tomato Salad', 'Vegetable': 'Mixed Veg Curry'}]
+--------------------------------------------------
+[*] Logging out...
+URL: http://localhost:5000/logout
+Status: 200
+Response: {'message': 'Successfully logged out'}
+--------------------------------------------------
+
+
+================ Testing Council APIs ========
+[*] Logging in...
+URL: http://localhost:5000/login
+Status: 200
+Response: {'message': 'Login successful', 'user': {'id': 2259, 'name': 'Council', 'role': 'Council'}}
+--------------------------------------------------
+[*] Pinging server...
+URL: http://localhost:5000/ping
+Status: 200
+Raw Response: pong
+--------------------------------------------------
+[*] Checking session validity...
+URL: http://localhost:5000/isValidSession?session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMjU5LCJyb2xlIjoiQ291bmNpbCIsImV4cCI6MTc0NDg0MTI5OX0.xVgxCbkZeoeoJLvwYYu7eY6sTrIMeyxSuXPJPDnEJ-8
+Status: 200
+Response: {'valid': True}
+--------------------------------------------------
+[*] Updating menu...
+URL: http://localhost:5000/council/menu/update/lunch
+Status: 201
+Response: {'message': 'Lunch menu updated successfully'}
+--------------------------------------------------
+[*] Viewing lunch menu...
+URL: http://localhost:5000/menu/lunch
+Status: 200
+Response: [{'Chapati': 'Whole Wheat Chapati', 'Dairy_Product': 'Curd', 'Dal': 'Toor Dal', 'Day': 'Monday', 'Legume_Curry': 'Chana Masala', 'Month': 'May', 'Papad_Fryums': 'Masala Papad', 'Pickle_Lemon': 'Lemon Pickle', 'Rice_Side': 'Jeera Rice', 'Salad': 'Cucumber Tomato Salad', 'Vegetable': 'Mixed Veg Curry'}]
+--------------------------------------------------
+[*] Logging out...
+URL: http://localhost:5000/logout
+Status: 200
+Response: {'message': 'Successfully logged out'}
+--------------------------------------------------
+
+
+================ Testing Student APIs ========
+[*] Logging in...
+URL: http://localhost:5000/login
+Status: 200
+Response: {'message': 'Login successful', 'user': {'id': 2264, 'name': 'Student1', 'role': 'Student'}}
+--------------------------------------------------
+[*] Pinging server...
+URL: http://localhost:5000/ping
+Status: 200
+Raw Response: pong
+--------------------------------------------------
+[*] Checking session validity...
+URL: http://localhost:5000/isValidSession?session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyMjY0LCJyb2xlIjoiU3R1ZGVudCIsImV4cCI6MTc0NDg0MTI5OX0.nMv4bRmshZ-WR71CPVT2TJAm2VEVLNAKve7O1A51gSU
+Status: 200
+Response: {'valid': True}
+--------------------------------------------------
+[*] Viewing lunch menu...
+URL: http://localhost:5000/menu/lunch
+Status: 200
+Response: [{'Chapati': 'Whole Wheat Chapati', 'Dairy_Product': 'Curd', 'Dal': 'Toor Dal', 'Day': 'Monday', 'Legume_Curry': 'Chana Masala', 'Month': 'May', 'Papad_Fryums': 'Masala Papad', 'Pickle_Lemon': 'Lemon Pickle', 'Rice_Side': 'Jeera Rice', 'Salad': 'Cucumber Tomato Salad', 'Vegetable': 'Mixed Veg Curry'}]
+--------------------------------------------------
+[*] Logging out...
+URL: http://localhost:5000/logout
+Status: 200
+Response: {'message': 'Successfully logged out'}
+--------------------------------------------------

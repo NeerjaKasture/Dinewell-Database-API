@@ -1,3 +1,4 @@
 venv/
-app.log
-*.txt
+*.log
+cookies.txt
+__pycache__/
